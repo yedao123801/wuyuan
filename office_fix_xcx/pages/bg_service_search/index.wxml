@@ -1,0 +1,90 @@
+<view class="mt-home">
+	<view class="search-input-area">
+		<view class="mt-search-wrap">
+			<!-- 搜索输入容器 -->
+			<view class="mt-search-input-box">
+				<input
+				class="mt-search-input"
+				placeholder="搜索办公设备"
+				placeholder-class="mt-search-placeholder"
+			/>
+		</view>
+		<text class="mt-search-btn" bindtap="refreshList">搜索</text>
+	</view>
+</view>
+<view class="filter_top_tab_wrap">
+	<view bindtap="resetAllFilter" class="filter_tab_item {{activeTab === 'all' ? 'filter_tab_active' : ''}}">
+		默认
+	</view>
+	<view bindtap="showFilterModal" class="filter_tab_item {{activeTab === 'filter' ? 'filter_tab_active' : ''}}"  wx:if="{{filterDimensionList.length>0}}">
+		筛选
+		<view class="filter_badge_num" wx:if="{{totalSelectedCount > 0}}">{{totalSelectedCount}}</view>
+	</view>
+</view>
+<view class="filter_modal_wrap {{filterModalVisible ? 'filter_modal_show' : ''}}">
+	<view class="filter_modal_mask" bindtap="hideFilterModal"></view>
+	<view class="filter_modal_content_box" catchtap="">
+		<!-- 弹窗内Tab：类名加长+前缀 -->
+		<view class="filter_inner_tab_wrap">
+			<view
+				bindtap="switchFilterTab"
+				data-attr-name="{{item.attrName}}"
+				class="filter_inner_tab_item {{activeFilterTab === item.attrName ? 'filter_inner_tab_active' : ''}}"
+				wx:for="{{filterDimensionList}}"
+				wx:key="attrName"
+				>
+				{{item.zhName}}
+			</view>
+		</view>
+		<!-- 筛选标签：类名加长+前缀，保留checked判断逻辑 -->
+		<view wx:if="{{currentFilterDimension}}" class="filter_tag_list_wrap">
+			<view
+				bindtap="selectFilterItem"
+				data-attr-name="{{currentFilterDimension.attrName}}"
+				data-item-id="{{item.id}}"
+				class="filter_tag_item {{item.checked ? 'filter_tag_active' : ''}}"
+				wx:for="{{currentFilterDimension.list}}"
+				wx:key="id"
+				>
+				{{item.name}}
+			</view>
+		</view>
+		<!-- 底部按钮区：类名加长+前缀 -->
+		<view class="filter_btn_wrap">
+			<button bindtap="resetCurrentFilter" class="filter_reset_btn">重置当前</button>
+			<button bindtap="confirmFilter" class="filter_confirm_btn">确认筛选</button>
+		</view>
+	</view>
+</view>
+<view class="all-list-div">
+	<view class="mt-section mt-notice-section">
+		<view class="mt-section-title">
+			<text class="mt-title-text">办公</text>
+		</view>
+		<view class="mt-notice-list">
+			<block wx:for="{{bgServiceList}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+				<navigator url="/pages/bg_service_detail/index?id={{item.bgService.id}}">
+					<view class="mt-notice-card">
+						<view class="mt-notice-info">
+							<text class="mt-notice-title">{{item.bgService.serviceNo!=null?item.bgService.serviceNo:''}}</text>
+							<text class="mt-notice-subtitle">{{item.bgService.serviceType!=null?item.bgService.serviceType:''}}</text>
+							<text class="mt-notice-time">{{item.bgService.serviceName!=null?item.bgService.serviceName:''}}</text>
+							<text class="mt-notice-time">{{item.bgService.serviceXh!=null?item.bgService.serviceXh:''}}</text>
+							<text class="mt-notice-time">{{item.bgqyStr!=null?item.bgqyStr:''}}</text>
+							<text class="mt-notice-time" wx:if="{{item.distance != null && item.distance !== '' && item.distance >= 0}}">
+								{{item.distance}}km
+							</text>
+						</view>
+					</view>
+				</navigator>
+			</block>
+			<view wx:if="{{bgServiceList.length==0}}">
+				<view class="mt-empty">
+					<text class="mt-empty-text">暂无数据</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view style="height:220rpx"></view>
+</view>

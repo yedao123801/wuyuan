@@ -1,0 +1,536 @@
+/* 登录页面全局样式 */
+page {
+  background-color: #faf5f5; /* 浅红底，适配红色调 */
+  height: 100%;
+}
+/* 页面主容器 */
+.mt-page {
+  padding: 40rpx 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* 表单容器 */
+.mt-form-container {
+  background-color: #ffffff;
+  border-radius: 24rpx;
+  padding: 50rpx 40rpx;
+  box-shadow: 0 8rpx 30rpx rgba(230, 57, 70, 0.08); /* 红色系浅阴影 */
+}
+/* 登录标题 */
+.mt-title-div {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #e63946; /* 主红色 */
+  text-align: center;
+  margin-bottom: 60rpx;
+  letter-spacing: 2rpx;
+  position: relative;
+}
+/* 标题下划线装饰 */
+.mt-title-div::after {
+  content: '';
+  display: block;
+  width: 80rpx;
+  height: 4rpx;
+  background: linear-gradient(90deg, #e63946, #ff7f50); /* 红橙渐变 */
+  border-radius: 2rpx;
+  margin: 15rpx auto 0;
+}
+/* 表单区域 */
+.mt-page__bd {
+  width: 100%;
+}
+/* 表单项容器 */
+.mt-form-div {
+  margin-bottom: 40rpx;
+  position: relative;
+}
+/* 表单项标题 */
+.mt-form-div-title {
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 12rpx;
+  font-weight: 500;
+  padding-left: 8rpx;
+}
+/* 表单项内容区 */
+.mt-form-div-content {
+  position: relative;
+}
+/* 输入框样式 */
+.form-input {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  border: 1rpx solid #f0f0f0;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #333;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+/* 输入框聚焦样式 */
+.form-input:focus {
+  border-color: #e63946;
+  background-color: #fff;
+  box-shadow: 0 0 0 4rpx rgba(230, 57, 70, 0.1);
+}
+/* 输入框占位符样式 */
+.form-input::placeholder {
+  color: #999999;
+  font-size: 26rpx;
+}
+/* 验证码区域容器 */
+.mt-valid-input-div {
+  margin-bottom: 50rpx;
+}
+/* 验证码标题 */
+.mt-valid-input-div-title {
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 12rpx;
+  font-weight: 500;
+  padding-left: 8rpx;
+}
+/* 验证码内容区 */
+.mt-valid-input-div-content {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+/* 验证码输入框容器 */
+.mt-valid-input-div-content2 {
+  flex: 1;
+}
+/* 验证码输入框样式 */
+.mt-valid-input-class {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  border: 1rpx solid #f0f0f0;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #333;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+/* 验证码输入框聚焦样式 */
+.mt-valid-input-class:focus {
+  border-color: #e63946;
+  background-color: #fff;
+  box-shadow: 0 0 0 4rpx rgba(230, 57, 70, 0.1);
+}
+/* 验证码图片容器 */
+.mt-validcode-img {
+  width: 180rpx;
+  height: 80rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  border: 1rpx solid #f0f0f0;
+}
+/* 验证码图片样式 */
+.mt-validCodeImg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+}
+/* 按钮区域间距 */
+.mt-page__bd_spacing {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-top: 20rpx;
+}
+/* 主按钮（提交登录） */
+.mt-primary-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: linear-gradient(135deg, #e63946 0%, #ff7f50 100%); /* 红橙渐变 */
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 44rpx;
+  border: none;
+  box-shadow: 0 6rpx 20rpx rgba(230, 57, 70, 0.2);
+  transition: all 0.3s ease;
+}
+/* 主按钮点击效果 */
+.mt-primary-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 3rpx 15rpx rgba(230, 57, 70, 0.25);
+}
+/* 去除小程序按钮默认样式 */
+.mt-primary-btn::after {
+  border: none;
+}
+/* 微信授权登录按钮 */
+.mt-default-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background-color: #ffffff;
+  color: #e63946;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 44rpx;
+  border: 1rpx solid #e63946;
+  box-sizing: border-box;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+/* 微信授权按钮点击效果 */
+.mt-default-btn:active {
+  background-color: #fff0f0;
+  transform: scale(0.98);
+}
+/* 链接按钮（注册/首页） */
+.mt-link-btn {
+  text-align: center;
+  font-size: 28rpx;
+  color: #e63946;
+  padding: 15rpx 0;
+  letter-spacing: 1rpx;
+  text-decoration: none;
+}
+/* 链接按钮hover效果 */
+.mt-link-btn-hover {
+  color: #c12c38; /* 深一点的红色 */
+  text-decoration: underline;
+}
+/* 适配深色模式（可选） */
+@media (prefers-color-scheme: dark) {
+  page {
+    background-color: #1a1a1a;
+  }
+  .mt-form-container {
+    background-color: #2c2c2c;
+    box-shadow: 0 8rpx 30rpx rgba(230, 57, 70, 0.15);
+  }
+  .mt-title-div, .mt-link-btn, .mt-default-btn {
+    color: #ff8a80;
+  }
+  .mt-form-div-title, .mt-valid-input-div-title {
+    color: #ffffff;
+  }
+  .form-input, .mt-valid-input-class {
+    background-color: #333333;
+    border-color: #444444;
+    color: #ffffff;
+  }
+  .form-input::placeholder, .mt-valid-input-class::placeholder {
+    color: #777777;
+  }
+  .mt-default-btn {
+    background-color: #2c2c2c;
+    border-color: #ff8a80;
+  }
+}
+.mt-subtitle-div {
+  /* 字体样式 */
+  font-size: 24rpx;
+  color: #666666;
+  font-weight: 400;
+  /* 排版布局 */
+  text-align: center;
+  margin-bottom: 40rpx;
+  /* 装饰效果 */
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* ================= 输入框核心样式（form-input） ================= */
+/* 基础样式（适配普通文本/密码框）- 主流轻量风格 */
+.form-input {
+  width: 100% !important;
+  height: 88rpx !important; /* 主流舒适高度，提升触控体验 */
+  line-height: 88rpx !important;
+  padding: 0 24rpx !important; /* 更宽松的内边距，输入更舒适 */
+  border: 1rpx solid #E5E7EB !important; /* 极浅灰边框，更现代 */
+  border-radius: 16rpx !important; /* 大圆角，主流设计趋势 */
+  font-size: 30rpx !important; /* 略大字体，提升可读性 */
+  color: #111827 !important; /* 中性深灰，比纯黑更柔和 */
+  background-color: #FFFFFF !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  /* 微阴影，增加层次感 */
+  box-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.02) !important;
+  /* 过渡动画，交互更丝滑 */
+  transition: all 0.2s ease-in-out !important;
+}
+/* 聚焦状态 - 强反馈但不刺眼 */
+.form-input:focus {
+  border-color: #3B82F6 !important; /* 主流品牌蓝，更清新 */
+  background-color: #F9FAFB !important; /* 极浅灰背景，区分聚焦 */
+  /* 轻量级发光效果，现代感 */
+  box-shadow: 0 0 0 4rpx rgba(59, 130, 246, 0.1) !important;
+  /* 轻微上浮，增强交互感 */
+  transform: translateY(-1rpx) !important;
+}
+/* 禁用状态 - 更自然的灰化效果 */
+.form-input:disabled {
+  border-color: #F3F4F6 !important;
+  color: #9CA3AF !important;
+  background-color: #F9FAFB !important;
+  cursor: not-allowed !important;
+  opacity: 0.85 !important; /* 透明度降低，视觉上区分禁用 */
+}
+/* 占位符样式 - 更柔和的浅灰 */
+.form-input::placeholder {
+  color: #D1D5DB !important;
+  font-size: 28rpx !important;
+  /* 占位符斜体，轻微区分输入内容 */
+  font-style: normal !important;
+  opacity: 0.8 !important;
+}
+/* 密码框适配 - 优化圆点显示 */
+.form-input[type="password"] {
+  letter-spacing: 4rpx !important; /* 更大间距，密码圆点更清晰 */
+}
+/* 可选：输入框hover效果（针对非小程序端兼容，小程序可保留） */
+.form-input:hover:not(:disabled):not(:focus) {
+  border-color: #D1D5DB !important;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.03) !important;
+}
+/* 可选：错误状态样式（扩展用，可根据业务添加） */
+.form-input.error {
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 0 4rpx rgba(239, 68, 68, 0.1) !important;
+}
+/* 上传区域主容器 */
+.upload-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  padding: 10rpx 0;
+}
+/* 已选文件列表 */
+.file-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+/* 单文件项容器 */
+.file-item {
+  position: relative;
+  width: 210rpx;
+  height: 210rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  background-color: #f8f8f8;
+}
+/* 图片/视频预览区 */
+.media-preview {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+/* 文件图片/视频封面 */
+.file-img {
+  width: 100%;
+  height: 100%;
+}
+/* 视频时长 */
+.video-duration {
+  position: absolute;
+  bottom: 10rpx;
+  right: 10rpx;
+  padding: 4rpx 8rpx;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 22rpx;
+  border-radius: 4rpx;
+}
+/* 文件类型图标（视频/音频/文件） */
+.file-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60rpx;
+  z-index: 1;
+}
+.file-icon.video, .file-icon.audio {
+  color: #fff;
+  text-shadow: 0 0 10rpx rgba(0,0,0,0.5);
+}
+.file-icon.file {
+  color: #666;
+}
+/* 文件/音频预览区（文字型） */
+.file-preview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+/* 文件信息（名称+大小） */
+.file-info {
+  margin-top: 20rpx;
+  text-align: center;
+  width: 100%;
+}
+.file-name {
+  font-size: 24rpx;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.file-size {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+/* 删除按钮 */
+.del-btn {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 50%;
+  transform: rotate(0);
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+.del-btn:active {
+  transform: rotate(90deg);
+  background-color: rgba(255, 0, 0, 0.8);
+}
+/* 上传状态提示 */
+.upload-status {
+  position: absolute;
+  bottom: 10rpx;
+  left: 10rpx;
+  padding: 4rpx 8rpx;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 22rpx;
+  border-radius: 4rpx;
+}
+.upload-status.success {
+  background-color: rgba(0, 180, 0, 0.8);
+  padding: 4rpx 10rpx;
+}
+.upload-status.fail {
+  background-color: rgba(255, 0, 0, 0.8);
+  padding: 4rpx 10rpx;
+}
+/* 上传按钮 */
+.upload-btn {
+  width: 210rpx;
+  height: 210rpx;
+  border: 2rpx dashed #d1d5db;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+.upload-btn:active {
+  background-color: #f3f4f6;
+  border-color: #00cccc;
+}
+.upload-icon {
+  font-size: 60rpx;
+  color: #9ca3af;
+  margin-bottom: 10rpx;
+}
+.upload-text {
+  font-size: 24rpx;
+  color: #9ca3af;
+}
+/* 按钮组：拼多多风格 - 全屏宽度 + 合理留白 + 左对齐 */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rpx; /* 拼多多选项按钮标准间距 */
+  width: 100%; 
+  padding: 0 10rpx; /* 拼多多表单常规左右留白 */
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+/* 商品类型按钮：拼多多核心样式 - 一行4个自适应 + 适中圆角 */
+.type-btn {
+  height: 76rpx; /* 拼多多选项按钮标准高度 */
+  line-height: 76rpx;
+  padding: 0 10rpx; /* 内边距适配文字展示 */
+  font-size: 26rpx; /* 拼多多易读字体大小 */
+  text-align: center;
+  border-radius: 8rpx; /* 拼多多选项按钮小圆角（非全圆角） */
+  border: 1rpx solid #e0e0e0; /* 默认浅灰边框 */
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  min-width:100rpx;
+}
+/* 选中态：拼多多经典样式 - 红边框+红文字+浅红背景 */
+.type-btn-active {
+  border-color: #e64340; /* 拼多多红 */
+  color: #e64340;
+  background-color: rgba(230, 67, 64, 0.05); /* 浅红背景，不刺眼 */
+}
+/* 点击态：拼多多交互反馈 */
+.type-btn:active {
+  background-color: #f9f9f9;
+}
+/* 更多/收起按钮：拼多多风格 - 和选项按钮视觉统一 */
+.more-btn {
+  flex: 0 0 calc(25% - 9rpx); /* 和类型按钮同宽度 */
+  height: 76rpx;
+  line-height: 76rpx;
+  padding: 0 10rpx;
+  font-size: 26rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  border: 1rpx solid #e0e0e0;
+  background-color: #f8f8f8; /* 拼多多更多按钮浅灰背景 */
+  color: #666;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+/* 更多按钮点击态 */
+.more-btn:active {
+  background-color: #f0f0f0;
+}
+/* 重置微信小程序button默认样式（拼多多无默认边框/阴影） */
+button {
+  margin: 0; /* 清除默认margin */
+}
+button::after {
+  border: none !important; /* 清除小程序button默认伪元素边框 */
+}
+/* 适配极端情况：当按钮文字过长时，自动省略 */
+.type-btn, .more-btn {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+

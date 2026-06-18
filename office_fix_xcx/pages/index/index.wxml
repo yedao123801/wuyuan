@@ -1,0 +1,108 @@
+<view class="mt-home">
+	<view class="mt-function-grid">
+		<navigator url="/pages/bg_service_search/index">
+			<view class="mt-function-item">
+				<view class="mt-function-icon">
+				</view>
+				<text class="mt-function-name">办公设备</text>
+			</view>
+		</navigator>
+		<navigator url="/pages/zsk_search/index">
+			<view class="mt-function-item">
+				<view class="mt-function-icon">
+				</view>
+				<text class="mt-function-name">知识库</text>
+			</view>
+		</navigator>
+		<navigator url="/pages/xt_notice_search/index">
+			<view class="mt-function-item">
+				<view class="mt-function-icon">
+				</view>
+				<text class="mt-function-name">系统公告</text>
+			</view>
+		</navigator>
+	</view>
+	<view class="all-list-div">
+		<view class="mt-section mt-notice-section">
+			<view class="mt-section-title">
+				<text class="mt-title-text">办公设备</text>
+			</view>
+			<view class="mt-notice-list">
+				<block wx:for="{{bgServiceList}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+					<navigator url="/pages/bg_service_detail/index?id={{item.bgService.id}}">
+						<view class="mt-notice-card">
+							<view class="mt-notice-info">
+								<text class="mt-notice-title">{{item.bgService.serviceNo!=null?item.bgService.serviceNo:''}}</text>
+								<text class="mt-notice-subtitle">{{item.bgService.serviceType!=null?item.bgService.serviceType:''}}</text>
+								<text class="mt-notice-time">{{item.bgService.serviceName!=null?item.bgService.serviceName:''}}</text>
+								<text class="mt-notice-time">{{item.bgService.serviceXh!=null?item.bgService.serviceXh:''}}</text>
+								<text class="mt-notice-time">{{item.bgqyStr!=null?item.bgqyStr:''}}</text>
+								<text class="mt-notice-time" wx:if="{{item.distance != null && item.distance !== '' && item.distance >= 0}}">
+									{{item.distance}}km
+								</text>
+							</view>
+						</view>
+					</navigator>
+				</block>
+				<view wx:if="{{bgServiceList.length==0}}">
+					<view class="mt-empty">
+						<text class="mt-empty-text">暂无数据</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="mt-section mt-notice-section">
+			<view class="mt-section-title">
+				<text class="mt-title-text">知识库</text>
+			</view>
+			<view class="mt-notice-list">
+				<block wx:for="{{zskList}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+					<navigator url="/pages/zsk_detail/index?id={{item.zsk.id}}">
+						<view class="mt-notice-card">
+							<view class="mt-notice-info">
+								<text class="mt-notice-title">{{item.zsk.title!=null?item.zsk.title:''}}</text>
+								<text class="mt-notice-subtitle">{{item.zsk.subtitle!=null?item.zsk.subtitle:''}}</text>
+								<text class="mt-notice-time">{{item.zsk.fbTime!=null?item.zsk.fbTime:''}}</text>
+								<text class="mt-notice-time" wx:if="{{item.distance != null && item.distance !== '' && item.distance >= 0}}">
+									{{item.distance}}km
+								</text>
+							</view>
+						</view>
+					</navigator>
+				</block>
+				<view wx:if="{{zskList.length==0}}">
+					<view class="mt-empty">
+						<text class="mt-empty-text">暂无数据</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="mt-section mt-notice-section">
+			<view class="mt-section-title">
+				<text class="mt-title-text">系统公告</text>
+			</view>
+			<view class="mt-notice-list">
+				<block wx:for="{{xtNoticeList}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+					<navigator url="/pages/xt_notice_detail/index?id={{item.xtNotice.id}}">
+						<view class="mt-notice-card">
+							<view class="mt-notice-info">
+								<text class="mt-notice-title">{{item.xtNotice.title!=null?item.xtNotice.title:''}}</text>
+								<text class="mt-notice-subtitle">{{item.xtNotice.subtitle!=null?item.xtNotice.subtitle:''}}</text>
+								<text class="mt-notice-time">{{item.xtNotice.fbTime!=null?item.xtNotice.fbTime:''}}</text>
+								<text class="mt-notice-time" wx:if="{{item.distance != null && item.distance !== '' && item.distance >= 0}}">
+									{{item.distance}}km
+								</text>
+							</view>
+						</view>
+					</navigator>
+				</block>
+				<view wx:if="{{xtNoticeList.length==0}}">
+					<view class="mt-empty">
+						<text class="mt-empty-text">暂无数据</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view style="height:220rpx"></view>
+</view>

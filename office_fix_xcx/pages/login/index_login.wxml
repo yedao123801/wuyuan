@@ -1,0 +1,37 @@
+<view class="mt-page">
+	<view class="mt-form-container">
+		<view class="mt-title-div">登录</view>
+		<view class="mt-subtitle-div">高效报修，轻松办公</view>
+		<view class="mt-page__bd">
+			<view class="mt-form-div">
+				<view class="mt-form-div-title">登录名</view>
+				<view class="mt-form-div-content">
+					<input  id="loginName"  bind:change="inputHandler" value="{{loginName}}" class="form-input"   placeholder="请输入登录名"   />
+				</view>
+			</view>
+			<view class="mt-form-div">
+				<view class="mt-form-div-title">密码</view>
+				<view class="mt-form-div-content">
+					<input  id="password"  type="text" password="{{true}}"  class="form-input"   bind:change="inputHandler" value="{{password}}"    placeholder="请输入密码"   />
+				</view>
+			</view>
+			<view class="mt-valid-input-div">
+				<view class="mt-valid-input-div-title">验证码</view>
+				<view class="mt-valid-input-div-content">
+					<view class="mt-valid-input-div-content2">
+						<input id="validCode" bind:change="inputHandler" class="mt-valid-input-class" placeholder="验证码" />
+					</view>
+					<view class="mt-validcode-img">
+						<image bindtap="clickValidImg" class="mt-validCodeImg" src="{{validCodeImg}}" mode="widthFix" />
+						<!-- 移除点击刷新提示文字 -->
+					</view>
+				</view>
+			</view>
+			<view class="mt-page__bd_spacing">
+				<button bindtap="submitLogin" class="mt-primary-btn">提交登录</button>
+				<navigator url="/pages/login/regist" class="mt-link-btn" hover-class="mt-link-btn-hover">用户注册</navigator>
+				<navigator url="/pages/index/index" open-type="switchTab" class="mt-link-btn" hover-class="mt-link-btn-hover">首页</navigator>
+			</view>
+		</view>
+	</view>
+</view>

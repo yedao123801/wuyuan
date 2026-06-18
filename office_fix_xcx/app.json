@@ -1,0 +1,70 @@
+{
+  "pages": [
+   	"pages/index/index",
+"pages/bg_service_search/index",
+"pages/zsk_search/index",
+"pages/xt_notice_search/index",
+"pages/login/index_login",
+"pages/login/regist",
+"pages/personal/altert_password",
+"pages/uuser/detail",
+"pages/uuser/update1",
+"pages/ubx_log/list",
+"pages/ubx_log/detail",
+"pages/ubx_log/ys",
+"pages/ueval_log/list",
+"pages/ueval_log/detail",
+"pages/ueval_log/add",
+"pages/ueval_log/update",
+"pages/bx_log/index",
+"pages/bg_service_detail/index",
+"pages/zsk_detail/index",
+"pages/xt_notice_detail/index",
+"pages/personal/personal",
+"pages/error/index"
+
+  ],
+  "window": {
+   "navigationBarBackgroundColor": "#ff4444",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "Wux",
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+   "custom": true,
+    "color": "#888888",
+    "selectedColor": "#04BE02",
+    "borderStyle": "white",
+    "backgroundColor": "#f7f7f8",
+    "list": [
+	      {
+"pagePath": "pages/index/index",
+"iconPath": "assets/icon/index.png",
+"selectedIconPath": "assets/icon/index-active.png",
+"text": "首页"
+},
+{
+"pagePath": "pages/personal/personal",
+"iconPath": "assets/icon/personal.png",
+"selectedIconPath": "assets/icon/personal-active.png",
+"text": "个人中心"
+}
+    ]
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "requiredPrivateInfos": [
+    "getLocation",  
+    "chooseLocation"  
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于为你展示附近的服务/精准定位等" 
+    }
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,110 @@
+<view class="mt-page">
+	<view class="mt-form-container">
+		<view class="mt-title-div">注册</view>
+		<view class="mt-subtitle-div">高效报修，轻松办公</view>
+		<view class="mt-page__bd">
+			<view class="mt-form-div">
+				<view class="mt-form-div-title">登录名</view>
+				<view class="mt-form-div-content">
+					<input  id="loginName"  bind:change="inputHandler" value="{{loginName}}" class="form-input"   placeholder="请输入登录名"   />
+				</view>
+			</view>
+			<view class="mt-form-div">
+				<view class="mt-form-div-title">密码</view>
+				<view class="mt-form-div-content">
+					<input  id="password"  type="text" password="{{true}}"  class="form-input"   bind:change="inputHandler" value="{{password}}"    placeholder="请输入密码"   />
+				</view>
+			</view>
+			<view class="mt-form-div">
+				<view class="mt-form-div-title">姓名</view>
+				<view class="mt-form-div-content">
+					<input  id="name"  bind:change="inputHandler" value="{{name}}" class="form-input"   placeholder="请输入姓名"   />
+				</view>
+			</view>
+			<view class="mt-form-div">
+				<view class="mt-form-div-title">联系电话</view>
+				<view class="mt-form-div-content">
+					<input  id="celphone"  bind:change="inputHandler" value="{{celphone}}" class="form-input"   placeholder="请输入联系电话"   />
+				</view>
+			</view>
+			<view class="mt-form-div">
+				<view class="mt-form-div-title">头像</view>
+				<view class="mt-form-div-content">
+					<view class="upload-box">
+						<!-- 已选文件列表（支持图片/视频/文件/音频） -->
+						<view class="file-list">
+							<block wx:for="{{headImgFileList}}" wx:key="index">
+								<!-- 通用文件项：不同类型展示不同样式 -->
+								<view class="file-item">
+									<!-- 1. 图片/视频预览 -->
+									<view class="media-preview" wx:if="{{item.fileType === 'image' || item.fileType === 'video'}}" bindtap="previewMedia" data-index="{{index}}" data-id="headImg">
+										<image class="file-img" src="{{item.coverUrl || item.tempUrl}}" mode="aspectFill"></image>
+										<!-- 视频时长 -->
+										<view class="video-duration" wx:if="{{item.fileType === 'video'}}">{{item.duration}}</view>
+										<!-- 视频/音频图标 -->
+										<view class="file-icon {{item.fileType}}" wx:if="{{item.fileType === 'video' || item.fileType === 'audio'}}">
+											<text>{{item.fileType === 'video' ? '🎬' : '🎵'}}</text>
+										</view>
+									</view>
+									<!-- 2. 文件/音频预览（文字+图标） -->
+									<view class="file-preview" wx:if="{{item.fileType === 'file' || item.fileType === 'audio'}}" bindtap="openFile" data-index="{{index}}" data-id="headImg">
+										<view class="file-icon {{item.fileType}}">
+											<text>{{item.fileType === 'file' ? '📄' : '🎵'}}</text>
+										</view>
+										<view class="file-info">
+											<view class="file-name">{{item.fileName || '未知文件'}}</view>
+											<view class="file-size">{{item.fileSize}}</view>
+										</view>
+									</view>
+									<!-- 删除按钮 -->
+									<view class="del-btn" bindtap="delFile" data-id="headImg" data-index="{{index}}">×</view>
+									<!-- 上传状态提示 -->
+									<view class="upload-status" wx:if="{{item.uploadStatus === 'uploading'}}">上传中...</view>
+									<view class="upload-status success" wx:if="{{item.uploadStatus === 'success'}}">✓</view>
+									<view class="upload-status fail" wx:if="{{item.uploadStatus === 'fail'}}">×</view>
+								</view>
+							</block>
+						</view>
+						<!-- 上传按钮（数量限制） -->
+						<view class="upload-btn" wx:if="{{headImgFileList.length < 1}}"
+								data-maxnum="1" data-id="headImg" bindtap="chooseUploadType"  data-filetype="1">
+								<view class="upload-icon">+</view>
+								<view class="upload-text">点击上传文件</view>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="mt-form-div">
+					<view class="mt-form-div-title">部门</view>
+					<view class="mt-form-div-content">
+						<view class="btn-group">
+							<block wx:for="{{departShowList}}" wx:key="id">
+								<button class="type-btn {{item.isSelected ? 'type-btn-active' : ''}}" bindtap="toggleSelect" data-iscomplex="2" data-value="{{item.value}}" data-id="depart">
+									{{item.title}}
+								</button>
+							</block>
+							<button class="more-btn" bindtap="toggleShow" wx-if="{{departList.length>7}}" data-id="depart">
+								{{departShowAll ? '收起' : '《更多'}}
+							</button>
+						</view>
+					</view>
+				</view>
+				<view class="mt-valid-input-div">
+					<view class="mt-valid-input-div-title">验证码</view>
+					<view class="mt-valid-input-div-content">
+						<view class="mt-valid-input-div-content2">
+							<input id="validCode" bind:change="inputHandler" class="mt-valid-input-class" placeholder="验证码" />
+						</view>
+						<view class="mt-validcode-img">
+							<image bindtap="clickValidImg" class="mt-validCodeImg" src="{{validCodeImg}}" mode="widthFix" />
+							<!-- 移除点击刷新提示文字 -->
+						</view>
+					</view>
+				</view>
+				<view class="mt-page__bd_spacing">
+					<button bindtap="submitRegist" class="mt-primary-btn">提交注册</button>
+					<navigator url="/pages/login/index_login" class="mt-link-btn" hover-class="mt-link-btn-hover">返回登录</navigator>
+				</view>
+			</view>
+		</view>
+	</view>

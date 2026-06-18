@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.office.dao.EvalLogMapper">
+  <resultMap id="BaseResultMap" type="com.office.model.EvalLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="bxid" property="bxid" jdbcType="BIGINT" />
+  <result column="fix" property="fix" jdbcType="BIGINT" />
+  <result column="eval_star" property="evalStar" jdbcType="INTEGER" />
+  <result column="eval_content" property="evalContent" jdbcType="VARCHAR" />
+  <result column="user_id" property="userId" jdbcType="BIGINT" />
+  <result column="eval_time" property="evalTime" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+     id,`bxid`,`fix`,`eval_star`,`eval_content`,`user_id`,`eval_time`
+  </sql>
+  <select id="selectByExample" parameterType="com.office.model.EvalLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `eval_log`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+     <if test="startRow >= 0 and pageRows > 0">
+  limit ${startRow},${pageRows}
+  </if>
+
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from `eval_log`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+   delete from `eval_log`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.office.model.EvalLogExample">
+    delete from `eval_log`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.office.model.EvalLog">
+      <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  SELECT LAST_INSERT_ID()
+</selectKey>
+
+      insert into `eval_log` (`bxid`,`fix`,`eval_star`,`eval_content`,`user_id`,`eval_time`)
+      values (	#{bxid,jdbcType=BIGINT},	#{fix,jdbcType=BIGINT},	#{evalStar,jdbcType=INTEGER},	#{evalContent,jdbcType=VARCHAR},	#{userId,jdbcType=BIGINT},	STR_TO_DATE(#{evalTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'))
+  </insert>
+  <insert id="insertSelective" parameterType="com.office.model.EvalLog">
+   <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  SELECT LAST_INSERT_ID()
+</selectKey>
+
+    insert into `eval_log`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null" >
+	  `id`,
+ </if>
+<if test="bxid != null" >
+	  `bxid`,
+ </if>
+<if test="fix != null" >
+	  `fix`,
+ </if>
+<if test="evalStar != null" >
+	  `eval_star`,
+ </if>
+<if test="evalContent != null" >
+	  `eval_content`,
+ </if>
+<if test="userId != null" >
+	  `user_id`,
+ </if>
+<if test="evalTime != null" >
+	  `eval_time`
+ </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+         <if test="id != null" >
+	 #{id,jdbcType=BIGINT},
+	 </if>
+  <if test="bxid != null" >
+	 #{bxid,jdbcType=BIGINT},
+	 </if>
+  <if test="fix != null" >
+	 #{fix,jdbcType=BIGINT},
+	 </if>
+  <if test="evalStar != null" >
+	 #{evalStar,jdbcType=INTEGER},
+	 </if>
+  <if test="evalContent != null" >
+	 #{evalContent,jdbcType=VARCHAR},
+	 </if>
+  <if test="userId != null" >
+	 #{userId,jdbcType=BIGINT},
+	 </if>
+  <if test="evalTime != null" >
+	 STR_TO_DATE(#{evalTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'),
+	 </if>
+
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.office.model.EvalLogExample" resultType="java.lang.Long">
+    select count(*) from `eval_log`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `eval_log`
+    <set>
+       <if test="record.bxid != null" >
+	 `bxid` = #{record.bxid,jdbcType=BIGINT},
+</if>
+ <if test="record.fix != null" >
+	 `fix` = #{record.fix,jdbcType=BIGINT},
+</if>
+ <if test="record.evalStar != null" >
+	 `eval_star` = #{record.evalStar,jdbcType=INTEGER},
+</if>
+ <if test="record.evalContent != null" >
+	 `eval_content` = #{record.evalContent,jdbcType=VARCHAR},
+</if>
+ <if test="record.userId != null" >
+	 `user_id` = #{record.userId,jdbcType=BIGINT},
+</if>
+ <if test="record.evalTime != null" >
+	 `eval_time` = #{record.evalTime,jdbcType=VARCHAR}
+</if>
+
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `eval_log`
+    set 
+    				`bxid` = #{record.bxid,jdbcType=BIGINT},	`fix` = #{record.fix,jdbcType=BIGINT},	`eval_star` = #{record.evalStar,jdbcType=INTEGER},	`eval_content` = #{record.evalContent,jdbcType=VARCHAR},	`user_id` = #{record.userId,jdbcType=BIGINT},	`eval_time` = STR_TO_DATE(#{record.evalTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f')
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.office.model.EvalLog">
+    update `eval_log`
+    <set>
+       <if test="bxid != null" >
+	 `bxid` = #{bxid,jdbcType=BIGINT},
+</if>
+ <if test="fix != null" >
+	 `fix` = #{fix,jdbcType=BIGINT},
+</if>
+ <if test="evalStar != null" >
+	 `eval_star` = #{evalStar,jdbcType=INTEGER},
+</if>
+ <if test="evalContent != null" >
+	 `eval_content` = #{evalContent,jdbcType=VARCHAR},
+</if>
+ <if test="userId != null" >
+	 `user_id` = #{userId,jdbcType=BIGINT},
+</if>
+ <if test="evalTime != null" >
+	 `eval_time` = #{evalTime,jdbcType=VARCHAR}
+</if>
+
+    </set>
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.office.model.EvalLog">
+    update `eval_log`
+    set 
+     			`bxid` = #{bxid,jdbcType=BIGINT},	`fix` = #{fix,jdbcType=BIGINT},	`eval_star` = #{evalStar,jdbcType=INTEGER},	`eval_content` = #{evalContent,jdbcType=VARCHAR},	`user_id` = #{userId,jdbcType=BIGINT},	`eval_time` = STR_TO_DATE(#{evalTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f')
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

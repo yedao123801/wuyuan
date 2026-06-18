@@ -1,0 +1,25 @@
+<view class="page">
+	<!-- 主体内容区（全新布局） -->
+	<view class="page__bd">
+		<!-- 表单外层容器（全新：渐变背景+双层阴影） -->
+		<view class="form-container">
+			<!-- 表单内层卡片（全新：极简样式） -->
+			<view class="form-card">
+				<view class="form-card__title">信息编辑</view>
+				<!-- 表单项（全新：独立卡片样式） -->
+				<view class="edit-form-item">
+					<view class="form-label-wrap">
+						<view class="form-label">验收说明</view>
+					</view>
+					<view class="form-content-wrap">
+						<input  id="ysNote"  bind:change="inputHandler" value="{{ysNote}}" class="form-input"   placeholder="请输入验收说明"   />
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 底部按钮区（全新布局） -->
+	<view class="page__ft">
+		<button block type="primary" bindtap="submitData" class="submit-btn">提交信息</button>
+	</view>
+</view>

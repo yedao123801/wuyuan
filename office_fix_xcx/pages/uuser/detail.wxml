@@ -1,0 +1,53 @@
+<view class="page">
+	<view class="page-title-div">
+		<view class="page-detail-img-div">
+			<view class="page-detail-img-content">
+				<view wx:for="{{detail.headImgList}}" wx:for-index="index" wx:for-item="item3" wx:key="key">
+					<view class="page-detail-div4">
+						<image src="{{item3}}" class="page-detail-img"/>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="page-detail-title-div">
+			<view class="page-detail-title">
+				{{detail.user.loginName!=null?detail.user.loginName:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				姓名
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.user.name!=null?detail.user.name:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				联系电话
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.user.celphone!=null?detail.user.celphone:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				部门
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.departStr!=null?detail.departStr:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				注册时间
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.user.zcTime!=null?detail.user.zcTime:''}}
+			</view>
+		</view>
+		<view class="btn-area">
+			<button class="detail-abtn" data-btntype="1" data-id="{{detail.user.id}}"  bindtap="btnClick">修改</button>
+		</view>
+	</view>
+</view>

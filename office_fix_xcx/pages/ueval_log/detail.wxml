@@ -1,0 +1,54 @@
+<view class="page">
+	<view class="page-title-div">
+		<view class="page-detail-title-div">
+			<view class="page-detail-title">
+				{{detail.bxidStr!=null?detail.bxidStr:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				评价内容
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.evalLog.evalContent!=null?detail.evalLog.evalContent:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				评价时间
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.evalLog.evalTime!=null?detail.evalLog.evalTime:''}}
+			</view>
+		</view>
+		<view class="page-detail-author-div">
+			<view class="page-detail-author-title">
+				维修员
+			</view>
+			<view class="page-detail-author-content">
+				<view class="page-detail-author-content2">
+					<view class="page-detail-author-headimg">
+						<image class="page-detail-author-img" src="{{detail.fixImg}}"></image>
+					</view>
+					<view class="page-detail-author-name">{{detail.fixStr!=null?detail.fixStr:''}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="page-detail-author-div">
+			<view class="page-detail-author-title">
+				用户ID
+			</view>
+			<view class="page-detail-author-content">
+				<view class="page-detail-author-content2">
+					<view class="page-detail-author-headimg">
+						<image class="page-detail-author-img" src="{{detail.userIdImg}}"></image>
+					</view>
+					<view class="page-detail-author-name">{{detail.userIdStr!=null?detail.userIdStr:''}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="btn-area">
+			<button class="detail-abtn" data-btntype="1" data-id="{{detail.evalLog.id}}"  bindtap="btnClick">修改</button>
+		</view>
+	</view>
+</view>

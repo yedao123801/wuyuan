@@ -1,0 +1,504 @@
+/* 全局容器 */
+.profile-container {
+	min-height: 100vh;
+	background-color: #faf5f5;
+	position: relative;
+}
+/* 顶部渐变背景 */
+.profile-header-bg {
+	background: linear-gradient(135deg, #e63946 0%, #ff7f50 100%);
+	padding: 40rpx 30rpx 30rpx;
+	border-radius: 0 0 40rpx 40rpx;
+	box-shadow: 0 6rpx 25rpx rgba(230, 57, 70, 0.15);
+	position: relative;
+	overflow: hidden;
+}
+/* 装饰圆点 */
+.decorate-dot {
+	position: absolute;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+.dot1 {
+	width: 180rpx;
+	height: 180rpx;
+	top: 20rpx;
+	right: 50rpx;
+}
+.dot2 {
+	width: 120rpx;
+	height: 120rpx;
+	bottom: 80rpx;
+	left: 30rpx;
+}
+/* 顶部个人信息卡片 */
+.profile-header-card {
+	background-color: rgba(255, 255, 255, 0.98);
+	border-radius: 24rpx;
+	padding: 35rpx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 25rpx;
+	box-shadow: 0 4rpx 20rpx rgba(230, 57, 70, 0.08);
+	position: relative;
+	z-index: 10;
+}
+/* 用户信息（头像+昵称） */
+.user-info {
+	display: flex;
+	align-items: center;
+}
+/* 头像容器 */
+.avatar-wrapper {
+	position: relative;
+	margin-right: 30rpx;
+}
+/* 头像边框 */
+.avatar-border {
+	position: absolute;
+	top: -6rpx;
+	left: -6rpx;
+	width: calc(100% + 12rpx);
+	height: calc(100% + 12rpx);
+	border-radius: 50%;
+	padding: 2rpx;
+	box-sizing: border-box;
+}
+/* 头像样式 */
+.avatar {
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 50%;
+	border: 4rpx solid #fff;
+	position: relative;
+	z-index: 1;
+}
+/* 头像遮罩（增加质感） */
+.avatar-mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: linear-gradient(45deg, rgba(230, 57, 70, 0.08), rgba(255, 127, 80, 0.08));
+	z-index: 2;
+}
+/* 用户详情 */
+.user-detail {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+/* 昵称 */
+.nickname {
+	font-size: 36rpx;
+	font-weight: 600;
+	color: #333;
+	display: block;
+	margin-bottom: 10rpx;
+	letter-spacing: 1rpx;
+}
+/* 个性签名 */
+.desc {
+	font-size: 24rpx;
+	color: #666;
+	margin-bottom: 12rpx;
+	letter-spacing: 0.5rpx;
+}
+/* 用户标签 */
+.user-tag {
+	background: linear-gradient(135deg, #e63946 0%, #ff7f50 100%);
+	border-radius: 24rpx;
+	padding: 6rpx 34rpx;
+	display: inline-block;
+	box-shadow: 0 2rpx 8rpx rgba(230, 57, 70, 0.15);
+}
+/* 标签文字 */
+.tag-text {
+	font-size: 20rpx;
+	color: #fff;
+	font-weight: 500;
+	letter-spacing: 0.5rpx;
+}
+/* 编辑资料按钮 */
+.edit-btn {
+	display: flex;
+	align-items: center;
+	background-color: #fff0f0;
+	border-radius: 24rpx;
+	padding: 12rpx 24rpx;
+	color: #e63946;
+	font-size: 26rpx;
+	transition: all 0.3s ease;
+	box-shadow: 0 2rpx 8rpx rgba(230, 57, 70, 0.08);
+}
+.edit-btn:active {
+	background-color: #ffe8e8;
+	transform: scale(0.97);
+	box-shadow: 0 1rpx 4rpx rgba(230, 57, 70, 0.1);
+}
+.edit-icon {
+	margin-right: 8rpx;
+	font-size: 24rpx;
+}
+/* 数据统计卡片 */
+.stats-card {
+	background-color: rgba(255, 255, 255, 0.98);
+	border-radius: 24rpx;
+	padding: 30rpx 20rpx;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	box-shadow: 0 4rpx 20rpx rgba(230, 57, 70, 0.08);
+	position: relative;
+	z-index: 10;
+}
+/* 统计项 */
+.stats-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 10rpx 20rpx;
+	border-radius: 16rpx;
+	transition: all 0.2s ease;
+}
+.stats-item:active {
+	background-color: #fff0f0;
+	transform: scale(0.98);
+}
+/* 统计数字 */
+.stats-num {
+	font-size: 36rpx;
+	font-weight: 700;
+	color: #e63946;
+	margin-bottom: 8rpx;
+	letter-spacing: 1rpx;
+}
+/* 统计文字 */
+.stats-text {
+	font-size: 24rpx;
+	color: #666;
+	letter-spacing: 0.5rpx;
+}
+/* 统计分隔线 */
+.stats-divider {
+	width: 1rpx;
+	height: 50rpx;
+	background-color: #f2f2f2;
+}
+/* 功能列表区域 */
+.profile-menu {
+	padding: 35rpx 25rpx;
+}
+/* 功能卡片 */
+.menu-card {
+	background-color: #fff;
+	border-radius: 24rpx;
+	padding: 30rpx;
+	margin-bottom: 25rpx;
+	box-shadow: 0 4rpx 20rpx rgba(230, 57, 70, 0.05);
+	transition: all 0.3s ease;
+}
+.menu-card:active {
+	box-shadow: 0 6rpx 25rpx rgba(230, 57, 70, 0.1);
+	transform: translateY(-2rpx);
+}
+/* 菜单标题 */
+.menu-title {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: #333;
+	margin-bottom: 30rpx;
+	display: flex;
+	align-items: center;
+}
+.menu-title text {
+	position: relative;
+	padding-right: 15rpx;
+}
+/* 标题下划线 */
+.title-line {
+	flex: 1;
+	height: 1rpx;
+	background: linear-gradient(90deg, #e63946 0%, transparent 100%);
+}
+/* 网格菜单 */
+.menu-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+/* 网格菜单项 */
+.menu-grid-item {
+	width: 24%; /* 适配5个菜单项，可根据数量调整 */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 25rpx 0;
+	border-radius: 20rpx;
+	transition: all 0.2s ease;
+}
+/* 网格菜单项hover效果 */
+.menu-item-hover {
+	background-color: #fff0f0;
+	transform: translateY(-3rpx);
+}
+/* 菜单图标容器 */
+.menu-icon-wrapper {
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+	background-color: #fff0f0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 12rpx;
+}
+/* 核心：统一类名 + nth-child实现12个无蓝色中性图标循环 */
+/* 网格菜单图标基础样式 */
+.menu-icon, .menu-list-icon {
+	font-size: 38rpx;
+	color: #e63946;
+	display: inline-block;
+}
+/* ========== 网格菜单图标（12个无蓝色+中性+柔和） ========== */
+/* 第1个：书签（通用标识，暖色调） */
+.menu-grid > .menu-grid-item:nth-child(1) .menu-icon::after { content: '🔖'; }
+/* 第2个：图钉（通用标识，无色彩冲突） */
+.menu-grid > .menu-grid-item:nth-child(2) .menu-icon::after { content: '📌'; }
+/* 第3个：星星（柔和装饰，适配红色调） */
+.menu-grid > .menu-grid-item:nth-child(3) .menu-icon::after { content: '⭐'; }
+/* 第4个：放大镜（通用功能，中性） */
+.menu-grid > .menu-grid-item:nth-child(4) .menu-icon::after { content: '🔍'; }
+/* 第5个：便签（通用标识，柔和） */
+.menu-grid > .menu-grid-item:nth-child(5) .menu-icon::after { content: '📝'; }
+/* 第6个：调色盘（通用创意，无蓝色） */
+.menu-grid > .menu-grid-item:nth-child(6) .menu-icon::after { content: '🎨'; }
+/* 第7个：铅笔（通用编辑，中性） */
+.menu-grid > .menu-grid-item:nth-child(7) .menu-icon::after { content: '✏️'; }
+/* 第8个：回形针（通用附件，无色彩冲突） */
+.menu-grid > .menu-grid-item:nth-child(8) .menu-icon::after { content: '📎'; }
+/* 第9个：链接（通用跳转，中性） */
+.menu-grid > .menu-grid-item:nth-child(9) .menu-icon::after { content: '🔗'; }
+/* 第10个：文件夹（通用分类，柔和） */
+.menu-grid > .menu-grid-item:nth-child(10) .menu-icon::after { content: '🗂️'; }
+/* 第11个：文件（通用文档，中性） */
+.menu-grid > .menu-grid-item:nth-child(11) .menu-icon::after { content: '📁'; }
+/* 第12个：靶心（通用目标，无蓝色） */
+.menu-grid > .menu-grid-item:nth-child(12) .menu-icon::after { content: '🎯'; }
+/* 循环：第13个=第1个 */
+.menu-grid > .menu-grid-item:nth-child(13) .menu-icon::after { content: '🔖'; }
+/* 第14个=第2个，以此类推 */
+.menu-grid > .menu-grid-item:nth-child(14) .menu-icon::after { content: '📌'; }
+/* 网格图标大小调整 */
+.menu-icon {
+	font-size: 38rpx;
+}
+/* 列表菜单图标容器 */
+.menu-list-icon-wrapper {
+	width: 60rpx;
+	height: 60rpx;
+	border-radius: 50%;
+	background-color: #fff0f0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 20rpx;
+}
+/* ========== 列表菜单图标（接网格后继续循环无蓝色中性emoji） ========== */
+/* 第1个列表项：链接（通用设置/跳转） */
+.menu-list > .menu-list-item:nth-child(1) .menu-list-icon::after { content: '🔗'; }
+/* 第2个列表项：文件夹（通用帮助/分类） */
+.menu-list > .menu-list-item:nth-child(2) .menu-list-icon::after { content: '🗂️'; }
+/* 第3个列表项：文件（通用客服/文档） */
+.menu-list > .menu-list-item:nth-child(3) .menu-list-icon::after { content: '📁'; }
+/* 第4个列表项：靶心（通用反馈/目标） */
+.menu-list > .menu-list-item:nth-child(4) .menu-list-icon::after { content: '🎯'; }
+/* 第5个列表项：循环到书签 */
+.menu-list > .menu-list-item:nth-child(5) .menu-list-icon::after { content: '🔖'; }
+/* 列表图标大小调整 */
+.menu-list-icon {
+	font-size: 30rpx;
+}
+/* 菜单文字 */
+.menu-text {
+	font-size: 24rpx;
+	color: #333;
+	letter-spacing: 0.5rpx;
+}
+/* 列表菜单 */
+.menu-list {
+	display: flex;
+	flex-direction: column;
+}
+/* 列表菜单项 */
+.menu-list-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 22rpx 0;
+	border-bottom: 1rpx solid #f8f8f8;
+	transition: all 0.2s ease;
+}
+.menu-list-item:last-child {
+	border-bottom: none;
+}
+.menu-list-item:active {
+	background-color: #fff0f0;
+	padding-left: 10rpx;
+	border-radius: 16rpx;
+}
+/* 列表菜单文字 */
+.menu-list-text {
+	font-size: 28rpx;
+	color: #333;
+	flex: 1;
+	letter-spacing: 0.5rpx;
+}
+/* 列表菜单箭头 */
+.menu-list-arrow {
+	font-size: 24rpx;
+	color: #ccc;
+}
+/* 退出登录区域 */
+.logout-area {
+	padding: 0 30rpx 50rpx;
+}
+/* 退出登录按钮 */
+.logout-btn {
+	width: 100%;
+	height: 92rpx;
+	line-height: 92rpx;
+	font-size: 32rpx;
+	border-radius: 46rpx;
+	background: linear-gradient(135deg, #e63946 0%, #ff7f50 100%);
+	color: #fff;
+	border: none;
+	box-shadow: 0 6rpx 20rpx rgba(230, 57, 70, 0.2);
+	transition: all 0.3s ease;
+	letter-spacing: 2rpx;
+	font-weight: 500;
+}
+.logout-btn:active {
+	transform: scale(0.98);
+	box-shadow: 0 3rpx 15rpx rgba(230, 57, 70, 0.25);
+}
+/* 适配深色模式 */
+@media (prefers-color-scheme: dark) {
+	.profile-container {
+		background-color: #1a1a1a;
+	}
+	.nickname, .menu-title text, .menu-text, .menu-list-text {
+		color: #fff;
+	}
+	.desc, .stats-text {
+		color: #ccc;
+	}
+	.menu-card, .profile-header-card, .stats-card {
+		background-color: rgba(30, 30, 30, 0.95);
+	}
+	.stats-divider {
+		background-color: #333;
+	}
+}
+/* 其他原有样式保持不变，此处省略（和你提供的完全一致） */
+/* 功能列表区域 - 只修改这部分 */
+.profile-menu {
+	padding: 10rpx 5rpx; /* 关键修改：将25rpx改为30rpx，和header-bg的左右padding对齐 */
+}
+/* 功能卡片 */
+.menu-card {
+	background-color: #fff;
+	border-radius: 24rpx;
+	padding: 30rpx 35rpx; /* 关键修改：将30rpx改为35rpx，和profile-header-card的内边距对齐 */
+	margin-bottom: 25rpx;
+	box-shadow: 0 4rpx 20rpx rgba(230, 57, 70, 0.05);
+	transition: all 0.3s ease;
+}
+.menu-card:active {
+	box-shadow: 0 6rpx 25rpx rgba(230, 57, 70, 0.1);
+	transform: translateY(-2rpx);
+}
+/* 菜单标题 */
+.menu-title {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: #333;
+	margin-bottom: 30rpx;
+	display: flex;
+	align-items: center;
+}
+.menu-title text {
+	position: relative;
+	padding-right: 15rpx;
+}
+/* 标题下划线 */
+.title-line {
+	flex: 1;
+	height: 1rpx;
+	background: linear-gradient(90deg, #e63946 0%, transparent 100%);
+}
+/* 网格菜单 */
+.menu-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+/* 网格菜单项 - 适配2个菜单项的宽度调整 */
+.menu-grid-item {
+	width: 48%; /* 关键修改：将24%改为48%，让2个菜单项占满宽度且间距合理 */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 25rpx 0;
+	border-radius: 20rpx;
+	transition: all 0.2s ease;
+}
+/* 订单数字提示样式（menu-grid-item-num-show） */
+.menu-grid-item-num-show {
+	position: absolute;
+	top: 10rpx;
+	right: 10rpx;
+	min-width: 32rpx;
+	height: 32rpx;
+	line-height: 32rpx;
+	text-align: center;
+	border-radius: 16rpx;
+	background: linear-gradient(135deg, #e63946 0%, #ff7f50 100%);
+	color: #fff;
+	font-size: 20rpx;
+	font-weight: 600;
+	padding: 0 8rpx;
+	box-shadow: 0 2rpx 8rpx rgba(230, 57, 70, 0.2);
+	z-index: 10;
+}
+/* 聊天室新消息提示样式（tip-num-show） */
+.tip-num-show {
+	position: absolute;
+	top: 18rpx;
+	right: 20rpx;
+	min-width: 36rpx;
+	height: 36rpx;
+	line-height: 36rpx;
+	text-align: center;
+	border-radius: 18rpx;
+	background: linear-gradient(135deg, #e63946 0%, #ff7f50 100%);
+	color: #fff;
+	font-size: 22rpx;
+	font-weight: 600;
+	padding: 0 10rpx;
+	box-shadow: 0 3rpx 10rpx rgba(230, 57, 70, 0.25);
+	z-index: 10;
+}
+/* 为包含角标的容器添加相对定位（确保角标定位正确） */
+.menu-grid-item {
+	position: relative;
+}
+.menu-list-item {
+	position: relative;
+}

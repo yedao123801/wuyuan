@@ -1,0 +1,33 @@
+@import 'assets/weui.wxss';
+button{
+  margin-top:5px;
+}
+/* app.wxss - WeUI图标核心样式 */
+.weui-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+  color: #000;
+  vertical-align: middle;
+}
+/* 常用图标示例：首页、返回、更多、购物车、搜索 */
+.weui-icon-home:before { content: "\e608"; }
+.weui-icon-back:before { content: "\e60a"; }
+.weui-icon-more:before { content: "\e60b"; }
+.weui-icon-cart:before { content: "\e60c"; }
+.weui-icon-search:before { content: "\e60d"; }
+/* 自定义尺寸/颜色（可选） */
+.weui-icon-lg { width: 32px; height: 32px; font-size: 32px; }
+.weui-icon-red { color: #ff4444; }
+/* 引入WeUI字体（本地/在线二选一，在线国内稳定） */
+@font-face {
+  font-family: "weui-iconfont";
+  /* 在线引入（国内稳定） */
+  src: url("https://res.wx.qq.com/open/libs/weui/2.4.1/fonts/weui-iconfont.woff2") format("woff2"),
+       url("https://res.wx.qq.com/open/libs/weui/2.4.1/fonts/weui-iconfont.woff") format("woff");
+}
+.weui-icon { font-family: "weui-iconfont" !important; }
+

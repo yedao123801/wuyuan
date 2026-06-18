@@ -1,0 +1,561 @@
+/* 全局样式初始化 + 移除所有闪烁特效核心配置 */
+page {
+  /* 核心：禁用移动端点击高亮（解决点击闪烁的关键） */
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+  /* 高端暖橘色调（保留） */
+  --primary-orange: #FF9540;
+  --primary-orange-light: #FFB478;
+  --primary-orange-dark: #E88030;
+  --orange-gradient: linear-gradient(135deg, #FF9540 0%, #FFB478 100%);
+  --orange-gradient-dark: linear-gradient(135deg, #E88030 0%, #FF9540 100%);
+  /* 文字层级（保留） */
+  --text-main: #2A2A2A;
+  --text-secondary: #686868;
+  --text-placeholder: #ADADAD;
+  /* 背景/边框（保留） */
+  --bg-page: #FFFBF7;
+  --bg-card: #FFFFFF;
+  --border-card: 1rpx solid rgba(255, 149, 64, 0.12);
+  --border-split: 1rpx solid rgba(255, 149, 64, 0.09);
+  /* 尺寸变量（保留加宽标签宽度） */
+  --radius-card: 20rpx;
+  --radius-btn: 16rpx;
+  --radius-sm: 8rpx;
+  --radius-circle: 50%;
+  --spacing-xs: 5rpx;
+  --spacing-sm: 12rpx;
+  --spacing-md: 15rpx;
+  --spacing-lg: 22rpx;
+  --label-width: 140rpx; /* 保留加宽的标签宽度，防换行 */
+  /* 阴影变量（简化，移除hover阴影变化） */
+  --shadow-card: 0 4rpx 12rpx rgba(255, 149, 64, 0.04);
+  --shadow-btn: 0 4rpx 10rpx rgba(255, 149, 64, 0.1);
+  --shadow-img: 0 2rpx 7rpx rgba(0, 0, 0, 0.03);
+  /* 核心：移除所有过渡动画（解决闪烁的核心） */
+  --transition-base: none;
+  background-color: var(--bg-page);
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 28rpx;
+  color: var(--text-main);
+  padding: 0;
+  margin: 0;
+  line-height: 1.58;
+}
+/* 页面根容器（保留） */
+.page {
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.page-title-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+/* ========== 通用卡片基础样式（移除hover动效，无闪烁） ========== */
+.page-detail-img-div,
+.page-detail-title-div,
+.page-detail-intro,
+.page-detail-location,
+.page-detail-title.rich-text-card,
+.page-detail-author-div,
+.page-detail-download-div,
+.page-detail-imgs,
+.page-detail-video,
+.page-detail-audio,
+.btn-area {
+  background: var(--bg-card);
+  border: var(--border-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); /* 仅保留基础阴影，无hover变化 */
+  padding: var(--spacing-sm) var(--spacing-lg);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+}
+/* 移除所有卡片的hover动效（核心：解决卡片闪烁） */
+.page-detail-img-div:hover,
+.page-detail-title-div:hover,
+.page-detail-intro:hover,
+.page-detail-location:hover,
+.page-detail-title.rich-text-card:hover,
+.page-detail-author-div:hover,
+.page-detail-download-div:hover,
+.page-detail-imgs:hover,
+.page-detail-video:hover,
+.page-detail-audio:hover,
+.btn-area:hover {
+  /* 完全移除hover的上浮、阴影变化，无任何视觉闪烁 */
+  box-shadow: var(--shadow-card);
+  transform: none;
+  border-color: rgba(255, 149, 64, 0.12);
+}
+/* 保留卡片边角装饰（静态，无动画） */
+.page-detail-img-div::before,
+.page-detail-title-div::before,
+.page-detail-intro::before,
+.page-detail-location::before,
+.page-detail-title.rich-text-card::before,
+.page-detail-author-div::before,
+.page-detail-download-div::before,
+.page-detail-imgs::before,
+.page-detail-video::before,
+.page-detail-audio::before,
+.btn-area::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 0 0 var(--radius-btn) 0;
+  background: var(--orange-gradient);
+  opacity: 0.05;
+  z-index: 0;
+}
+/* 所有卡片内容层（保留） */
+.page-detail-img-div view,
+.page-detail-title-div view,
+.page-detail-intro view,
+.page-detail-location view,
+.page-detail-location button,
+.page-detail-title.rich-text-card rich-text,
+.page-detail-author-div view,
+.page-detail-author-div navigator,
+.page-detail-download-div view,
+.page-detail-imgs view,
+.page-detail-video view,
+.page-detail-audio view,
+.btn-area button {
+  position: relative;
+  z-index: 1;
+}
+/* ========== 图片区域（移除图片hover缩放，无闪烁） ========== */
+.page-detail-img-div {
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-card);
+}
+.page-detail-img-content {
+  width: 100%;
+  box-sizing: border-box;
+}
+.page-detail-div4 {
+  width: 100%;
+  height: 370rpx;
+  border-radius: var(--radius-btn);
+  overflow: hidden;
+  border: none;
+  box-shadow: var(--shadow-img);
+  position: relative;
+  background-color: #F9F9F9;
+  margin-bottom: var(--spacing-sm);
+}
+/* 移除图片hover缩放（解决图片闪烁） */
+.page-detail-div4:hover {
+  transform: none;
+  box-shadow: var(--shadow-img);
+}
+.page-detail-img-content .page-detail-div4:nth-child(n+2) {
+  width: calc(50% - var(--spacing-xs));
+  height: 175rpx;
+  float: left;
+  margin-right: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+.page-detail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #F9F9F9;
+  display: block;
+}
+.page-detail-img[src=""]::before,
+.page-detail-img:not([src])::before {
+  content: "暂无图片";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-placeholder);
+  font-size: 23rpx;
+  z-index: 2;
+}
+/* ========== 订单号卡片（保留核心样式） ========== */
+.page-detail-title-div .page-detail-title {
+  font-size: 31rpx;
+  color: var(--text-main);
+  font-weight: 700;
+  text-align: center;
+  padding: var(--spacing-xs) 0;
+  letter-spacing: 1.8rpx;
+}
+.page-detail-title:empty::before {
+  content: "暂无订单号";
+  color: var(--text-placeholder);
+  font-weight: 400;
+  font-size: 27rpx;
+}
+/* ========== 核心：属性标题-内容左右布局（保留加宽标签，无动效） ========== */
+.page-detail-intro {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+}
+.page-detail-intro-title {
+  min-width: var(--label-width);
+  max-width: var(--label-width);
+  font-size: 27rpx;
+  color: var(--text-secondary);
+  font-weight: 500;
+  position: relative;
+  padding-left: 11rpx;
+  flex-shrink: 0;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.page-detail-intro-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rpx;
+  height: 19rpx;
+  background: var(--primary-orange);
+  border-radius: 1.5rpx;
+}
+.page-detail-intro-word {
+  flex: 1;
+  font-size: 29rpx;
+  color: var(--text-main);
+  word-break: break-all;
+  line-height: 1.55;
+  padding: 2rpx 0;
+  margin-left: 4rpx;
+}
+.page-detail-intro-word:empty::before {
+  content: "暂无数据";
+  color: var(--text-placeholder);
+  font-weight: 400;
+  font-size: 27rpx;
+}
+/* ========== 定位卡片（保留核心样式，移除按钮动效） ========== */
+.page-detail-location {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+.page-detail-location-title {
+  min-width: var(--label-width);
+  font-size: 27rpx;
+  color: var(--text-secondary);
+  font-weight: 500;
+  position: relative;
+  padding-left: 11rpx;
+  padding-bottom: 2rpx;
+  white-space: nowrap;
+}
+.page-detail-location-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rpx;
+  height: 19rpx;
+  background: var(--primary-orange);
+  border-radius: 1.5rpx;
+}
+.page-detail-location-dh {
+  padding-left: calc(var(--label-width) + 11rpx);
+}
+/* 定位按钮：移除active缩放/过渡，仅保留基础样式变化（无闪烁） */
+.go-map-btn {
+  padding: 9rpx 0;
+  background: rgba(255, 149, 64, 0.07);
+  color: var(--primary-orange);
+  border-radius: var(--radius-sm);
+  font-size: 27rpx;
+  border: 1rpx solid rgba(255, 149, 64, 0.2);
+  line-height: 1.4;
+  height: auto;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  /* 移除过渡，解决按钮点击闪烁 */
+  transition: none;
+}
+.go-map-btn:active {
+  background: var(--orange-gradient);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: var(--shadow-btn);
+  /* 移除缩放，解决点击闪烁 */
+  transform: none;
+}
+/* ========== 用户ID卡片（保留核心样式） ========== */
+.page-detail-author-div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+.page-detail-author-title {
+  min-width: var(--label-width);
+  font-size: 27rpx;
+  color: var(--text-secondary);
+  font-weight: 500;
+  position: relative;
+  padding-left: 11rpx;
+  padding-bottom: 2rpx;
+  white-space: nowrap;
+}
+.page-detail-author-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rpx;
+  height: 19rpx;
+  background: var(--primary-orange);
+  border-radius: 1.5rpx;
+}
+.page-detail-author-content {
+  width: 100%;
+  padding-left: calc(var(--label-width) + 11rpx);
+}
+.page-detail-author-content2 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.page-detail-author-headimg {
+  width: 58rpx;
+  height: 58rpx;
+  border-radius: var(--radius-circle);
+  overflow: hidden;
+  border: 1.5rpx solid rgba(255, 149, 64, 0.1);
+}
+.page-detail-author-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #F9F9F9;
+}
+.page-detail-author-name {
+  font-size: 27rpx;
+  color: var(--primary-orange);
+  font-weight: 500;
+}
+/* 移除用户ID文字hover下划线（解决闪烁） */
+navigator .page-detail-author-content2:hover .page-detail-author-name {
+  color: var(--primary-orange);
+  text-decoration: none;
+}
+/* ========== 下载/多媒体卡片（移除按钮动效，无闪烁） ========== */
+.page-detail-download-title,
+.page-detail-imgs-title,
+.page-detail-video-title,
+.page-detail-audio-title {
+  font-size: 29rpx;
+  font-weight: 600;
+  color: var(--primary-orange);
+  margin-bottom: var(--spacing-sm);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: var(--border-split);
+  letter-spacing: 1rpx;
+  padding-left: 2rpx;
+}
+.page-detail-download-content,
+.page-detail-imgs-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-xs);
+  padding-left: 2rpx;
+}
+.page-detail-video-content,
+.page-detail-audio-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-xs);
+  padding-left: 2rpx;
+}
+/* 下载按钮：移除过渡/缩放，无闪烁 */
+.download-div-file {
+  padding: 9rpx 22rpx;
+  background: rgba(255, 149, 64, 0.07);
+  color: var(--primary-orange);
+  border-radius: var(--radius-sm);
+  font-size: 25rpx;
+  border: 1rpx solid rgba(255, 149, 64, 0.2);
+  cursor: pointer;
+  font-weight: 500;
+  text-align: center;
+  transition: none;
+}
+.download-div-file:active {
+  background: var(--orange-gradient);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: var(--shadow-btn);
+  transform: none;
+}
+/* 多图片容器：移除hover缩放，无闪烁 */
+.page-detail-imgs-div3 {
+  width: 165rpx;
+  height: 165rpx;
+  border-radius: var(--radius-btn);
+  overflow: hidden;
+  border: none;
+  box-shadow: var(--shadow-img);
+}
+.page-detail-imgs-div3:hover {
+  transform: none;
+  box-shadow: var(--shadow-img);
+}
+.page-detail-imgs-aimg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #F9F9F9;
+}
+.page-detail-video3 {
+  width: 100%;
+  border-radius: var(--radius-btn);
+  overflow: hidden;
+  box-shadow: var(--shadow-img);
+  border: none;
+}
+.page-detail-video-url {
+  width: 100%;
+  height: 330rpx;
+  border-radius: var(--radius-btn);
+}
+.page-detail-audio-div3 {
+  width: 100%;
+  padding: var(--spacing-sm);
+  background-color: rgba(255, 149, 64, 0.07);
+  border-radius: var(--radius-sm);
+  border: var(--border-card);
+}
+.page-detail-audio-url {
+  width: 100%;
+}
+.page-detail-download-content:empty::before,
+.page-detail-imgs-content:empty::before,
+.page-detail-video-content:empty::before,
+.page-detail-audio-content:empty::before,
+.page-detail-rich-text:empty::before {
+  content: "暂无相关内容";
+  color: var(--text-placeholder);
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: var(--spacing-sm) 0;
+  font-size: 25rpx;
+  letter-spacing: 0.5rpx;
+}
+/* ========== 修改按钮卡片（移除高光/缩放，无闪烁） ========== */
+.btn-area {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.detail-abtn {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: var(--orange-gradient);
+  color: #FFFFFF;
+  border-radius: var(--radius-btn);
+  font-size: 31rpx;
+  font-weight: 600;
+  border: none;
+  box-shadow: var(--shadow-btn);
+  letter-spacing: 1.8rpx;
+  position: relative;
+  overflow: hidden;
+  /* 移除过渡，解决按钮闪烁 */
+  transition: none;
+}
+/* 完全移除按钮高光划过动画（核心：解决按钮闪烁） */
+.detail-abtn::after {
+  display: none;
+}
+/* 移除按钮active缩放，仅保留背景色变化（无闪烁） */
+.detail-abtn:active {
+  background: var(--orange-gradient-dark);
+  box-shadow: var(--shadow-btn);
+  transform: none;
+}
+/* ========== 响应式适配（保留，无动效） ========== */
+@media (max-width: 375px) {
+  .page {
+    padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+  :root {
+    --label-width: 125rpx;
+  }
+  .page-detail-div4 {
+    height: 310rpx;
+  }
+  .page-detail-img-content .page-detail-div4:nth-child(n+2) {
+    height: 145rpx;
+  }
+  .page-detail-intro-word {
+    font-size: 27rpx;
+  }
+  .page-detail-imgs-div3 {
+    width: 145rpx;
+    height: 145rpx;
+  }
+  .page-detail-video-url {
+    height: 270rpx;
+  }
+  .detail-abtn {
+    height: 82rpx;
+    line-height: 82rpx;
+    font-size: 29rpx;
+  }
+}
+@media (max-width: 320px) {
+  :root {
+    --label-width: 115rpx;
+  }
+  .page-detail-div4 {
+    height: 270rpx;
+  }
+  .page-detail-img-content .page-detail-div4:nth-child(n+2) {
+    height: 125rpx;
+  }
+  .page-detail-imgs-div3 {
+    width: 125rpx;
+    height: 125rpx;
+  }
+  .page-detail-video-url {
+    height: 230rpx;
+  }
+  .detail-abtn {
+    height: 74rpx;
+    line-height: 74rpx;
+    font-size: 27rpx;
+  }
+}
+
+

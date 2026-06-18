@@ -1,0 +1,65 @@
+<view class="profile-container">
+	<!-- 顶部渐变背景区 -->
+	<view class="profile-header-bg">
+		<!-- 装饰元素 -->
+		<view class="decorate-dot dot1"></view>
+		<view class="decorate-dot dot2"></view>
+		<!-- 顶部个人信息卡片 -->
+		<view class="profile-header-card">
+			<!-- 头像和昵称 -->
+			<view class="user-info">
+				<view class="avatar-wrapper">
+					<image class="avatar" src="{{model.user.headImg}}" mode="aspectFill" data-url="{{model.user.headImg}}" bind:click="onPreview"></image>
+					<view class="avatar-border"></view>
+					<view class="avatar-mask"></view>
+				</view>
+				<view class="user-detail">
+					<text class="nickname">{{model.user.loginName}}</text>
+					<text class="desc">{{model.user.name}}</text>
+					<view class="user-tag">
+					</view>
+				</view>
+			</view>
+			<navigator class="edit-btn" url="/pages/uuser/update1?id={{model.user.id}}" hover-class="none">
+				<view class="edit-icon">✏️</view>
+				<text>编辑资料</text>
+			</navigator>
+		</view>
+	</view>
+	<view class="menu-card">
+		<view class="menu-list">
+			<navigator class="menu-list-item" url="/pages/uuser/detail" wx:if="{{useruserdetail!=0}}"  hover-class="menu-item-hover">
+				<view class="menu-list-icon-wrapper">
+					<view class="menu-list-icon"></view>
+				</view>
+				<text class="menu-list-text">个人信息</text>
+				<view class="menu-list-arrow">→</view>
+			</navigator>
+			<navigator class="menu-list-item" url="/pages/ubx_log/list" wx:if="{{userbxloglist!=0}}"  hover-class="menu-item-hover">
+				<view class="menu-list-icon-wrapper">
+					<view class="menu-list-icon"></view>
+				</view>
+				<text class="menu-list-text">我的报修</text>
+				<view class="menu-list-arrow">→</view>
+			</navigator>
+			<navigator class="menu-list-item" url="/pages/ueval_log/list" wx:if="{{userevalloglist!=0}}"  hover-class="menu-item-hover">
+				<view class="menu-list-icon-wrapper">
+					<view class="menu-list-icon"></view>
+				</view>
+				<text class="menu-list-text">我的评价</text>
+				<view class="menu-list-arrow">→</view>
+			</navigator>
+			<navigator class="menu-list-item" url="/pages/personal/altert_password" hover-class="menu-item-hover">
+				<view class="menu-list-icon-wrapper">
+					<view class="menu-list-icon"></view>
+				</view>
+				<text class="menu-list-text">修改密码</text>
+				<view class="menu-list-arrow">→</view>
+			</navigator>
+		</view>
+	</view>
+	<view class="logout-area">
+		<button class="logout-btn" type="warn" bindtap="exitLogin">退出</button>
+	</view>
+	<view style="height:120rpx"></view>
+</view>

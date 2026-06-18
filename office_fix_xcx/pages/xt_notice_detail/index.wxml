@@ -1,0 +1,29 @@
+<view style="padding:20px;">
+	<scroll-view scroll-y  enable-back-to-top>
+		<!-- 商品核心信息区 -->
+		<view class="goods-info">
+			<view class="title-wrap">
+				<view class="goods-title">{{detail.xtNotice.title!=null?detail.xtNotice.title:''}}</view>
+				<view class="goods-opt-wrap">
+				</view>
+			</view>
+			<view class="price-area">
+				<text class="sales">{{detail.xtNotice.subtitle!=null?detail.xtNotice.subtitle:''}}</text>
+			</view>
+			<view class="promotion-tags">
+			</view>
+			<view class="goods-base-info">
+				<view class="base-item">
+					<text class="base-value">{{detail.xtNotice.fbTime!=null?detail.xtNotice.fbTime:''}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="goods-detail">
+			<view class="detail-title">公告内容</view>
+			<rich-text nodes="{{detail.xtNotice.noticeContent!=null?detail.xtNotice.noticeContent:''}}" class="rich-text-wrap"></rich-text>
+		</view>
+	</scroll-view>
+</view>
+<!-- 底部固定操作栏 -->
+<view class="bottom-bar">
+</view>

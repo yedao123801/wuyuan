@@ -1,0 +1,762 @@
+/* 全局基础样式 - 美团核心风格 */
+page {
+  background-color: #f5f5f5;
+  font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  --mt-yellow: #FFD100;      /* 美团经典黄 */
+  --mt-orange: #FF7D00;      /* 美团橙 */
+  --mt-blue: #4A90E2;        /* 轮播指示器蓝 */
+  --mt-gray-1: #333333;      /* 主文字 */
+  --mt-gray-2: #666666;      /* 次文字 */
+  --mt-gray-3: #999999;      /* 淡文字 */
+  --mt-gray-4: #f0f0f0;      /* 背景灰 */
+  --mt-white: #ffffff;       /* 白色 */
+  --mt-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08); /* 卡片阴影 */
+  --mt-radius: 16rpx;        /* 通用圆角 */
+}
+/* 根容器 */
+.mt-home {
+  width: 100%;
+  min-height: 100vh;
+}
+/* -------------------------- 轮播图样式 - 保留原有优化后样式 -------------------------- */
+.swiper-container {
+  position: relative;
+  background-color: var(--mt-white);
+  margin-bottom: 16rpx;
+  width: 100%;
+  height: 400rpx;
+  overflow: hidden;
+  border-radius: 16rpx;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.swiper-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.swiper-img {
+  width: 100% !important;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12rpx;
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.1);
+}
+/* 轮播标题 */
+.swiper-title-box {
+  position: absolute;
+  bottom: 20rpx;
+  left: 0;
+  width: 100%;
+  padding: 8rpx 20rpx;
+  background: linear-gradient(transparent, rgba(0,0,0,0.5));
+}
+.swiper-main-title {
+  font-size: 28rpx;
+  color: var(--mt-white);
+  font-weight: 500;
+  text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.3);
+}
+/* 轮播控制按钮 */
+.swiper-control {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16rpx;
+  z-index: 10;
+  pointer-events: none;
+}
+.control-btn {
+  pointer-events: auto;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70rpx;
+  height: 70rpx;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+.control-btn text {
+  font-size: 24rpx;
+  color: var(--mt-white);
+  font-size: 36rpx;
+  color: #333333;
+}
+.control-btn:active {
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(0.95);
+}
+.left-btn {
+  left: 16rpx;
+  margin-left: 10rpx;
+}
+.right-btn {
+  right: 16rpx;
+  margin-right: 10rpx;
+}
+/* -------------------------- 功能入口网格 - 20组中性Emoji+背景色（循环） -------------------------- */
+.mt-function-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--mt-white);
+  padding: 20rpx 0;
+  margin: 0 16rpx 16rpx;
+  border-radius: var(--mt-radius);
+  box-shadow: var(--mt-shadow);
+  flex-wrap: wrap; /* 适配20个图标，自动换行 */
+  gap: 20rpx 0; /* 行间距 */
+}
+/* 修复navigator默认样式（适配20个图标） */
+.mt-function-grid navigator {
+  text-decoration: none;
+  color: inherit;
+  width: 20%; /* 一行5个，20个分4行 */
+  box-sizing: border-box;
+  padding: 0 8rpx;
+}
+.mt-function-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8rpx 0;
+  transition: all 0.2s ease;
+}
+/* 按钮点击效果 */
+.mt-function-item:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+/* 功能图标基础样式（伪元素插入Emoji） */
+.mt-function-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3rpx 9rpx rgba(0, 0, 0, 0.1);
+  position: relative; /* 伪元素定位基准 */
+}
+/* 伪元素通用样式（插入Emoji） */
+.mt-function-icon::before {
+  content: ""; /* 由nth-child覆盖 */
+  font-size: 32rpx;
+  color: var(--mt-white);
+  line-height: 1;
+}
+.mt-function-name {
+  font-size: 24rpx;
+  color: var(--mt-gray-1);
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+/* -------------------------- 20组中性渐变背景 + 中性Emoji（循环逻辑） -------------------------- */
+/* 第1/21/41...个图标 - 浅蓝渐变 + 放大镜 */
+.mt-function-grid navigator:nth-child(20n+1) .mt-function-icon {
+  background: linear-gradient(135deg, #E0F7FA, #B2EBF2);
+}
+.mt-function-grid navigator:nth-child(20n+1) .mt-function-icon::before {
+  content: "🔍";
+  color: #00ACC1;
+}
+/* 第2/22/42...个图标 - 浅绿渐变 + 记事本 */
+.mt-function-grid navigator:nth-child(20n+2) .mt-function-icon {
+  background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+}
+.mt-function-grid navigator:nth-child(20n+2) .mt-function-icon::before {
+  content: "📝";
+  color: #43A047;
+}
+/* 第3/23/43...个图标 - 浅橙渐变 + 喇叭 */
+.mt-function-grid navigator:nth-child(20n+3) .mt-function-icon {
+  background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+}
+.mt-function-grid navigator:nth-child(20n+3) .mt-function-icon::before {
+  content: "📢";
+  color: #F57C00;
+}
+/* 第4/24/44...个图标 - 浅黄渐变 + 购物车 */
+.mt-function-grid navigator:nth-child(20n+4) .mt-function-icon {
+  background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+}
+.mt-function-grid navigator:nth-child(20n+4) .mt-function-icon::before {
+  content: "🏷️";
+  color: #F9A825;
+}
+/* 第5/25/45...个图标 - 浅紫渐变 + 星星 */
+.mt-function-grid navigator:nth-child(20n+5) .mt-function-icon {
+  background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+}
+.mt-function-grid navigator:nth-child(20n+5) .mt-function-icon::before {
+  content: "📥";
+  color: #9C27B0;
+}
+/* 第6/26/46...个图标 - 浅灰渐变 + 时钟 */
+.mt-function-grid navigator:nth-child(20n+6) .mt-function-icon {
+  background: linear-gradient(135deg, #F5F5F5, #E0E0E0);
+}
+.mt-function-grid navigator:nth-child(20n+6) .mt-function-icon::before {
+  content: "🕒";
+  color: #616161;
+}
+/* 第7/27/47...个图标 - 浅粉渐变 + 爱心 */
+.mt-function-grid navigator:nth-child(20n+7) .mt-function-icon {
+  background: linear-gradient(135deg, #FCE4EC, #F8BBD0);
+}
+.mt-function-grid navigator:nth-child(20n+7) .mt-function-icon::before {
+  content: "❤️";
+  color: #E91E63;
+}
+/* 第8/28/48...个图标 - 浅青渐变 + 消息 */
+.mt-function-grid navigator:nth-child(20n+8) .mt-function-icon {
+  background: linear-gradient(135deg, #E0F2F1, #B2DFDB);
+}
+.mt-function-grid navigator:nth-child(20n+8) .mt-function-icon::before {
+  content: "💬";
+  color: #00897B;
+}
+/* 第9/29/49...个图标 - 浅棕渐变 + 文件夹 */
+.mt-function-grid navigator:nth-child(20n+9) .mt-function-icon {
+  background: linear-gradient(135deg, #FBE9E7, #FFCCBC);
+}
+.mt-function-grid navigator:nth-child(20n+9) .mt-function-icon::before {
+  content: "📁";
+  color: #E64A19;
+}
+/* 第10/30/50...个图标 - 浅蓝紫渐变 + 齿轮 */
+.mt-function-grid navigator:nth-child(20n+10) .mt-function-icon {
+  background: linear-gradient(135deg, #EDE7F6, #D1C4E9);
+}
+.mt-function-grid navigator:nth-child(20n+10) .mt-function-icon::before {
+  content: "🖨️";
+  color: #673AB7;
+}
+/* 第11/31/51...个图标 - 浅薄荷渐变 + 筛选 */
+.mt-function-grid navigator:nth-child(20n+11) .mt-function-icon {
+  background: linear-gradient(135deg, #E7F5E8, #C1E1C1);
+}
+.mt-function-grid navigator:nth-child(20n+11) .mt-function-icon::before {
+  content: "🔎";
+  color: #2E7D32;
+}
+/* 第12/32/52...个图标 - 浅柠檬渐变 + 标签 */
+.mt-function-grid navigator:nth-child(20n+12) .mt-function-icon {
+  background: linear-gradient(135deg, #F9FBE7, #F0F4C3);
+}
+.mt-function-grid navigator:nth-child(20n+12) .mt-function-icon::before {
+  content: "🏷️";
+  color: #9E9D24;
+}
+/* 第13/33/53...个图标 - 浅天蓝渐变 + 下载 */
+.mt-function-grid navigator:nth-child(20n+13) .mt-function-icon {
+  background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+}
+.mt-function-grid navigator:nth-child(20n+13) .mt-function-icon::before {
+  content: "📥";
+  color: #1976D2;
+}
+/* 第14/34/54...个图标 - 浅豆沙渐变 + 分享 */
+.mt-function-grid navigator:nth-child(20n+14) .mt-function-icon {
+  background: linear-gradient(135deg, #F8F0E3, #E9DCCD);
+}
+.mt-function-grid navigator:nth-child(20n+14) .mt-function-icon::before {
+  content: "🔗";
+  color: #8D6E63;
+}
+/* 第15/35/55...个图标 - 浅靛蓝渐变 + 书签 */
+.mt-function-grid navigator:nth-child(20n+15) .mt-function-icon {
+  background: linear-gradient(135deg, #F0F4C3, #E6EE9C);
+}
+.mt-function-grid navigator:nth-child(20n+15) .mt-function-icon::before {
+  content: "🔖";
+  color: #7B1FA2;
+}
+/* 第16/36/56...个图标 - 浅珊瑚渐变 + 日历 */
+.mt-function-grid navigator:nth-child(20n+16) .mt-function-icon {
+  background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+}
+.mt-function-grid navigator:nth-child(20n+16) .mt-function-icon::before {
+  content: "📅";
+  color: #C62828;
+}
+/* 第17/37/57...个图标 - 浅松石渐变 + 地图 */
+.mt-function-grid navigator:nth-child(20n+17) .mt-function-icon {
+  background: linear-gradient(135deg, #E0F2F1, #80CBC4);
+}
+.mt-function-grid navigator:nth-child(20n+17) .mt-function-icon::before {
+  content: "🗺️";
+  color: #00695C;
+}
+/* 第18/38/58...个图标 - 浅奶油渐变 + 用户 */
+.mt-function-grid navigator:nth-child(20n+18) .mt-function-icon {
+  background: linear-gradient(135deg, #FFF8E6, #FFEBB2);
+}
+.mt-function-grid navigator:nth-child(20n+18) .mt-function-icon::before {
+  content: "👤";
+  color: #FF8F00;
+}
+/* 第19/39/59...个图标 - 浅雾蓝渐变 + 刷新 */
+.mt-function-grid navigator:nth-child(20n+19) .mt-function-icon {
+  background: linear-gradient(135deg, #F5F7FA, #E4E7EB);
+}
+.mt-function-grid navigator:nth-child(20n+19) .mt-function-icon::before {
+  content: "🔄";
+  color: #546E7A;
+}
+/* 第20/40/60...个图标 - 浅蔷薇渐变 + 打印 */
+.mt-function-grid navigator:nth-child(20n+20) .mt-function-icon {
+  background: linear-gradient(135deg, #FDF2F8, #FCE4EC);
+}
+.mt-function-grid navigator:nth-child(20n+20) .mt-function-icon::before {
+  content: "🖨️";
+  color: #AD1457;
+}
+/* -------------------------- 所有列表容器 -------------------------- */
+.all-list-div {
+  padding: 0 16rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+/* -------------------------- 通用模块样式 - 美团卡片 -------------------------- */
+.mt-section {
+  background-color: var(--mt-white);
+  border-radius: var(--mt-radius);
+  box-shadow: var(--mt-shadow);
+  overflow: hidden;
+}
+.mt-section-title {
+  padding: 16rpx 20rpx;
+  border-bottom: 1rpx solid var(--mt-gray-4);
+}
+.mt-title-text {
+  font-size: 28rpx;
+  color: var(--mt-gray-1);
+  font-weight: 600;
+}
+/* -------------------------- 商品列表 - 一行两个布局 -------------------------- */
+.mt-merchant-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16rpx;
+  gap: 16rpx;
+}
+.mt-merchant-list navigator {
+  text-decoration: none;
+  color: inherit;
+  width: calc(50% - 8rpx);
+}
+.mt-merchant-card {
+  border-radius: 12rpx;
+  overflow: hidden;
+  background-color: var(--mt-gray-4);
+  transition: all 0.2s ease;
+}
+.mt-merchant-card:active {
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+}
+.mt-merchant-img {
+  width: 100%;
+  height: 180rpx;
+  object-fit: cover;
+}
+.mt-merchant-info {
+  padding: 12rpx;
+  background-color: var(--mt-white);
+}
+.mt-merchant-name {
+  font-size: 26rpx;
+  color: var(--mt-gray-1);
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 8rpx;
+}
+.mt-merchant-tag {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+.mt-tag-sep {
+  font-size: 20rpx;
+  color: var(--mt-gray-4);
+  margin: 0 8rpx;
+}
+.mt-tag-sale {
+  font-size: 24rpx;
+  color: var(--mt-gray-3);
+}
+.mt-merchant-price {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 8rpx;
+}
+.mt-price {
+  font-size: 28rpx;
+  color: var(--mt-orange);
+  font-weight: 600;
+}
+.mt-freight {
+  font-size: 22rpx;
+  color: var(--mt-gray-3);
+  margin-left: 8rpx;
+}
+.mt-merchant-desc {
+  display: flex;
+  justify-content: flex-start;
+}
+.mt-desc-tag {
+  font-size: 22rpx;
+  color: var(--mt-gray-3);
+  background-color: var(--mt-gray-4);
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
+}
+/* -------------------------- 帖子/公告列表 -------------------------- */
+.mt-notice-section {
+  padding-bottom: 8rpx;
+}
+.mt-notice-list {
+  padding: 8rpx 0;
+}
+.mt-notice-list navigator {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1rpx solid var(--mt-gray-4);
+}
+.mt-notice-list navigator:last-child {
+  border-bottom: none;
+}
+.mt-notice-card {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 20rpx;
+  gap: 16rpx;
+  transition: all 0.2s ease;
+}
+.mt-notice-card:active {
+  background-color: var(--mt-gray-4);
+}
+.mt-notice-img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.mt-notice-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+.mt-notice-title {
+  font-size: 26rpx;
+  color: var(--mt-gray-1);
+  font-weight: 500;
+}
+.mt-notice-subtitle {
+  font-size: 24rpx;
+  color: var(--mt-gray-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.mt-notice-time {
+  font-size: 22rpx;
+  color: var(--mt-gray-3);
+  display: block;
+}
+/* -------------------------- 空数据样式 -------------------------- */
+.mt-empty {
+  padding: 80rpx 0;
+  text-align: center;
+  background-color: var(--mt-white);
+  border-radius: var(--mt-radius);
+  margin: 0 16rpx;
+}
+.mt-empty-text {
+  font-size: 28rpx;
+  color: var(--mt-gray-3);
+}
+/* -------------------------- 通用修复 -------------------------- */
+navigator {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+/* 商品图片循环渲染修复 */
+.mt-merchant-card view:first-child {
+  width: 100%;
+  height: 180rpx;
+  overflow: hidden;
+}
+.mt-merchant-card view:first-child image {
+  width: 100%;
+  height: 100%;
+}
+/* 帖子图片循环渲染修复 */
+.mt-notice-card view:first-child {
+  width: 100rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.mt-notice-card view:first-child image {
+  width: 100%;
+}
+/* 仿美团搜索框外层容器 */
+.mt-search-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12rpx 16rpx;
+  background-color: var(--mt-white);
+  margin: 0 16rpx 16rpx;
+  border-radius: var(--mt-radius);
+  box-shadow: var(--mt-shadow);
+}
+/* 搜索输入容器（核心：美团经典搜索框样式） */
+.mt-search-input-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: var(--mt-gray-4);
+  border-radius: 60rpx; /* 美团圆角搜索框 */
+  padding: 0 20rpx;
+  height: 72rpx;
+  box-sizing: border-box;
+}
+/* 搜索图标（美团风格） */
+.mt-search-icon {
+  font-size: 28rpx;
+  color: var(--mt-gray-3);
+  margin-right: 12rpx;
+  line-height: 1;
+}
+/* 搜索输入框 */
+.mt-search-input {
+  flex: 1;
+  height: 100%;
+  font-size: 28rpx;
+  color: var(--mt-gray-1);
+  background: transparent;
+  border: none;
+  outline: none;
+  /* 清除小程序默认样式 */
+  padding: 0;
+  margin: 0;
+}
+/* 占位符样式（美团浅灰色） */
+.mt-search-placeholder {
+  font-size: 26rpx;
+  color: var(--mt-gray-3);
+}
+/* 右侧取消按钮（美团风格） */
+.mt-search-btn {
+  font-size: 28rpx;
+  color: var(--mt-gray-1);
+  margin-left: 16rpx;
+  padding: 8rpx 12rpx;
+  border-radius: 8rpx;
+  transition: all 0.2s ease;
+}
+/* 按钮点击态（美团交互风格） */
+.mt-search-btn:active {
+  background-color: var(--mt-gray-4);
+  color: var(--mt-orange);
+}
+/* 适配输入框获取焦点样式 */
+.mt-search-input-box:focus-within {
+  background-color: #fafafa;
+  box-shadow: 0 0 0 2rpx rgba(255, 125, 0, 0.1); /* 美团橙浅边框 */
+}
+
+/* 筛选功能根容器：隔离全局样式 */
+.filter_page_container {
+  width: 100%;
+  box-sizing: border-box;
+}
+/* 顶部筛选Tab外层：加长类名 */
+.filter_top_tab_wrap {
+  display: flex;
+  background: #fff;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  padding: 0 10rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+/* 顶部Tab项：加长类名 */
+.filter_tab_item {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  position: relative;
+  font-size: 28rpx;
+  color: #333;
+  box-sizing: border-box;
+}
+/* Tab选中态：加长类名+!important，避免被覆盖 */
+.filter_tab_active {
+  color: #E53935 !important;
+  font-weight: 600 !important;
+}
+/* 角标数字：加长类名 */
+.filter_badge_num {
+  position: absolute;
+  top: 10rpx;
+  right: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  background: #E53935;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 50%;
+  text-align: center;
+}
+/* 筛选弹窗外层：加长类名+提高层级 */
+.filter_modal_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 9999; /* 避免被其他组件遮挡 */
+}
+/* 弹窗显示状态：加长类名 */
+.filter_modal_show {
+  display: block;
+}
+/* 弹窗遮罩层：加长类名 */
+.filter_modal_mask {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+/* 弹窗内容区：加长类名 */
+.filter_modal_content_box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+  padding: 20rpx;
+  max-height: 90vh;
+  box-sizing: border-box;
+}
+/* 弹窗内Tab外层：加长类名 */
+.filter_inner_tab_wrap {
+  display: flex;
+  margin-bottom: 20rpx;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+/* 弹窗内Tab项：加长类名 */
+.filter_inner_tab_item {
+  padding: 0 20rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  background: #FFF5F5;
+  border-radius: 10rpx;
+  margin: 0 5rpx;
+  font-size: 26rpx;
+  white-space: nowrap;
+  flex-shrink: 0; /* 防止压缩 */
+}
+/* 弹窗内Tab选中态：加长类名+!important */
+.filter_inner_tab_active {
+  background: #E53935 !important;
+  color: #fff !important;
+}
+/* 筛选标签列表外层：新增，优化布局 */
+.filter_tag_list_wrap {
+  width: 100%;
+  box-sizing: border-box;
+}
+/* 筛选标签项：加长类名+强化样式 */
+.filter_tag_item {
+  display: inline-block;
+  padding: 15rpx 30rpx;
+  background: #FFF5F5;
+  border: 1rpx solid #FCE4E4;
+  border-radius: 20rpx;
+  margin: 10rpx;
+  font-size: 26rpx;
+  color: #333;
+  /* 确保点击和样式优先级 */
+  position: relative;
+  z-index: 1;
+  touch-action: manipulation;
+  user-select: none;
+  pointer-events: auto;
+}
+/* 标签选中态：加长类名+!important，确保不冲突 */
+.filter_tag_active {
+  background: #E53935 !important;
+  color: #fff !important;
+  border-color: #E53935 !important;
+}
+/* 按钮区外层：加长类名 */
+.filter_btn_wrap {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 20rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* 重置按钮：加长类名 */
+.filter_reset_btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  color: #E53935;
+  border: 1rpx solid #FCE4E4;
+  background: #fff;
+}
+/* 确认按钮：加长类名+!important */
+.filter_confirm_btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  background: #E53935 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+
+
+
+

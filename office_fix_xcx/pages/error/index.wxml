@@ -1,0 +1,9 @@
+<wux-result
+	icon="{{ icon }}"
+	title="{{tip}}"
+	label="{{subTitle}}"
+	buttons="{{ buttons }}"
+	extra="{{projectSubTitle}}"
+	fixed
+	bind:click="onClick"
+/>

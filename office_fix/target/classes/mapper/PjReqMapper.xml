@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.office.dao.PjReqMapper">
+  <resultMap id="BaseResultMap" type="com.office.model.PjReq">
+    <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="req_no" property="reqNo" jdbcType="VARCHAR" />
+  <result column="pj_name" property="pjName" jdbcType="VARCHAR" />
+  <result column="xy_num" property="xyNum" jdbcType="INTEGER" />
+  <result column="req_note" property="reqNote" jdbcType="VARCHAR" />
+  <result column="req_status" property="reqStatus" jdbcType="INTEGER" />
+  <result column="check_remark" property="checkRemark" jdbcType="VARCHAR" />
+  <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+  <result column="fix" property="fix" jdbcType="BIGINT" />
+
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+     id,`req_no`,`pj_name`,`xy_num`,`req_note`,`req_status`,`check_remark`,`create_time`,`fix`
+  </sql>
+  <select id="selectByExample" parameterType="com.office.model.PjReqExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `pj_req`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+     <if test="startRow >= 0 and pageRows > 0">
+  limit ${startRow},${pageRows}
+  </if>
+
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from `pj_req`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+   delete from `pj_req`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.office.model.PjReqExample">
+    delete from `pj_req`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.office.model.PjReq">
+      <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  SELECT LAST_INSERT_ID()
+</selectKey>
+
+      insert into `pj_req` (`req_no`,`pj_name`,`xy_num`,`req_note`,`req_status`,`check_remark`,`create_time`,`fix`)
+      values (	#{reqNo,jdbcType=VARCHAR},	#{pjName,jdbcType=VARCHAR},	#{xyNum,jdbcType=INTEGER},	#{reqNote,jdbcType=VARCHAR},	#{reqStatus,jdbcType=INTEGER},	#{checkRemark,jdbcType=VARCHAR},	STR_TO_DATE(#{createTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'),	#{fix,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.office.model.PjReq">
+   <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  SELECT LAST_INSERT_ID()
+</selectKey>
+
+    insert into `pj_req`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null" >
+	  `id`,
+ </if>
+<if test="reqNo != null" >
+	  `req_no`,
+ </if>
+<if test="pjName != null" >
+	  `pj_name`,
+ </if>
+<if test="xyNum != null" >
+	  `xy_num`,
+ </if>
+<if test="reqNote != null" >
+	  `req_note`,
+ </if>
+<if test="reqStatus != null" >
+	  `req_status`,
+ </if>
+<if test="checkRemark != null" >
+	  `check_remark`,
+ </if>
+<if test="createTime != null" >
+	  `create_time`,
+ </if>
+<if test="fix != null" >
+	  `fix`
+ </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+         <if test="id != null" >
+	 #{id,jdbcType=BIGINT},
+	 </if>
+  <if test="reqNo != null" >
+	 #{reqNo,jdbcType=VARCHAR},
+	 </if>
+  <if test="pjName != null" >
+	 #{pjName,jdbcType=VARCHAR},
+	 </if>
+  <if test="xyNum != null" >
+	 #{xyNum,jdbcType=INTEGER},
+	 </if>
+  <if test="reqNote != null" >
+	 #{reqNote,jdbcType=VARCHAR},
+	 </if>
+  <if test="reqStatus != null" >
+	 #{reqStatus,jdbcType=INTEGER},
+	 </if>
+  <if test="checkRemark != null" >
+	 #{checkRemark,jdbcType=VARCHAR},
+	 </if>
+  <if test="createTime != null" >
+	 STR_TO_DATE(#{createTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'),
+	 </if>
+  <if test="fix != null" >
+	 #{fix,jdbcType=BIGINT},
+	 </if>
+
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.office.model.PjReqExample" resultType="java.lang.Long">
+    select count(*) from `pj_req`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `pj_req`
+    <set>
+       <if test="record.reqNo != null" >
+	 `req_no` = #{record.reqNo,jdbcType=VARCHAR},
+</if>
+ <if test="record.pjName != null" >
+	 `pj_name` = #{record.pjName,jdbcType=VARCHAR},
+</if>
+ <if test="record.xyNum != null" >
+	 `xy_num` = #{record.xyNum,jdbcType=INTEGER},
+</if>
+ <if test="record.reqNote != null" >
+	 `req_note` = #{record.reqNote,jdbcType=VARCHAR},
+</if>
+ <if test="record.reqStatus != null" >
+	 `req_status` = #{record.reqStatus,jdbcType=INTEGER},
+</if>
+ <if test="record.checkRemark != null" >
+	 `check_remark` = #{record.checkRemark,jdbcType=VARCHAR},
+</if>
+ <if test="record.createTime != null" >
+	 `create_time` = #{record.createTime,jdbcType=VARCHAR},
+</if>
+ <if test="record.fix != null" >
+	 `fix` = #{record.fix,jdbcType=BIGINT}
+</if>
+
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `pj_req`
+    set 
+    				`req_no` = #{record.reqNo,jdbcType=VARCHAR},	`pj_name` = #{record.pjName,jdbcType=VARCHAR},	`xy_num` = #{record.xyNum,jdbcType=INTEGER},	`req_note` = #{record.reqNote,jdbcType=VARCHAR},	`req_status` = #{record.reqStatus,jdbcType=INTEGER},	`check_remark` = #{record.checkRemark,jdbcType=VARCHAR},	`create_time` = STR_TO_DATE(#{record.createTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'),	`fix` = #{record.fix,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.office.model.PjReq">
+    update `pj_req`
+    <set>
+       <if test="reqNo != null" >
+	 `req_no` = #{reqNo,jdbcType=VARCHAR},
+</if>
+ <if test="pjName != null" >
+	 `pj_name` = #{pjName,jdbcType=VARCHAR},
+</if>
+ <if test="xyNum != null" >
+	 `xy_num` = #{xyNum,jdbcType=INTEGER},
+</if>
+ <if test="reqNote != null" >
+	 `req_note` = #{reqNote,jdbcType=VARCHAR},
+</if>
+ <if test="reqStatus != null" >
+	 `req_status` = #{reqStatus,jdbcType=INTEGER},
+</if>
+ <if test="checkRemark != null" >
+	 `check_remark` = #{checkRemark,jdbcType=VARCHAR},
+</if>
+ <if test="createTime != null" >
+	 `create_time` = #{createTime,jdbcType=VARCHAR},
+</if>
+ <if test="fix != null" >
+	 `fix` = #{fix,jdbcType=BIGINT}
+</if>
+
+    </set>
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.office.model.PjReq">
+    update `pj_req`
+    set 
+     			`req_no` = #{reqNo,jdbcType=VARCHAR},	`pj_name` = #{pjName,jdbcType=VARCHAR},	`xy_num` = #{xyNum,jdbcType=INTEGER},	`req_note` = #{reqNote,jdbcType=VARCHAR},	`req_status` = #{reqStatus,jdbcType=INTEGER},	`check_remark` = #{checkRemark,jdbcType=VARCHAR},	`create_time` = STR_TO_DATE(#{createTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'),	`fix` = #{fix,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

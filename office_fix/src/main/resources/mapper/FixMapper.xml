@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.office.dao.FixMapper">
+  <resultMap id="BaseResultMap" type="com.office.model.Fix">
+    <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+  <result column="password" property="password" jdbcType="VARCHAR" />
+  <result column="name" property="name" jdbcType="VARCHAR" />
+  <result column="celphone" property="celphone" jdbcType="VARCHAR" />
+  <result column="head_img" property="headImg" jdbcType="VARCHAR" />
+  <result column="sz_type" property="szType" jdbcType="VARCHAR" />
+  <result column="fix_zz" property="fixZz" jdbcType="VARCHAR" />
+  <result column="check_status" property="checkStatus" jdbcType="INTEGER" />
+  <result column="teval_score" property="tevalScore" jdbcType="DOUBLE" />
+  <result column="zc_time" property="zcTime" jdbcType="VARCHAR" />
+  <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+     id,`login_name`,`password`,`name`,`celphone`,`head_img`,`sz_type`,`fix_zz`,`check_status`,`teval_score`,`zc_time`,`is_delete`
+  </sql>
+  <select id="selectByExample" parameterType="com.office.model.FixExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `fix`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+     <if test="startRow >= 0 and pageRows > 0">
+  limit ${startRow},${pageRows}
+  </if>
+
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from `fix`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+   delete from `fix`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.office.model.FixExample">
+    delete from `fix`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.office.model.Fix">
+      <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  SELECT LAST_INSERT_ID()
+</selectKey>
+
+      insert into `fix` (`login_name`,`password`,`name`,`celphone`,`head_img`,`sz_type`,`fix_zz`,`check_status`,`teval_score`,`zc_time`,`is_delete`)
+      values (	#{loginName,jdbcType=VARCHAR},	#{password,jdbcType=VARCHAR},	#{name,jdbcType=VARCHAR},	#{celphone,jdbcType=VARCHAR},	#{headImg,jdbcType=VARCHAR},	#{szType,jdbcType=VARCHAR},	#{fixZz,jdbcType=VARCHAR},	#{checkStatus,jdbcType=INTEGER},	#{tevalScore,jdbcType=DOUBLE},	STR_TO_DATE(#{zcTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'),	#{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.office.model.Fix">
+   <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  SELECT LAST_INSERT_ID()
+</selectKey>
+
+    insert into `fix`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null" >
+	  `id`,
+ </if>
+<if test="loginName != null" >
+	  `login_name`,
+ </if>
+<if test="password != null" >
+	  `password`,
+ </if>
+<if test="name != null" >
+	  `name`,
+ </if>
+<if test="celphone != null" >
+	  `celphone`,
+ </if>
+<if test="headImg != null" >
+	  `head_img`,
+ </if>
+<if test="szType != null" >
+	  `sz_type`,
+ </if>
+<if test="fixZz != null" >
+	  `fix_zz`,
+ </if>
+<if test="checkStatus != null" >
+	  `check_status`,
+ </if>
+<if test="tevalScore != null" >
+	  `teval_score`,
+ </if>
+<if test="zcTime != null" >
+	  `zc_time`,
+ </if>
+<if test="isDelete != null" >
+	  `is_delete`
+ </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+         <if test="id != null" >
+	 #{id,jdbcType=BIGINT},
+	 </if>
+  <if test="loginName != null" >
+	 #{loginName,jdbcType=VARCHAR},
+	 </if>
+  <if test="password != null" >
+	 #{password,jdbcType=VARCHAR},
+	 </if>
+  <if test="name != null" >
+	 #{name,jdbcType=VARCHAR},
+	 </if>
+  <if test="celphone != null" >
+	 #{celphone,jdbcType=VARCHAR},
+	 </if>
+  <if test="headImg != null" >
+	 #{headImg,jdbcType=VARCHAR},
+	 </if>
+  <if test="szType != null" >
+	 #{szType,jdbcType=VARCHAR},
+	 </if>
+  <if test="fixZz != null" >
+	 #{fixZz,jdbcType=VARCHAR},
+	 </if>
+  <if test="checkStatus != null" >
+	 #{checkStatus,jdbcType=INTEGER},
+	 </if>
+  <if test="tevalScore != null" >
+	 #{tevalScore,jdbcType=DOUBLE},
+	 </if>
+  <if test="zcTime != null" >
+	 STR_TO_DATE(#{zcTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'),
+	 </if>
+  <if test="isDelete != null" >
+	 #{isDelete,jdbcType=INTEGER},
+	 </if>
+
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.office.model.FixExample" resultType="java.lang.Long">
+    select count(*) from `fix`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `fix`
+    <set>
+       <if test="record.loginName != null" >
+	 `login_name` = #{record.loginName,jdbcType=VARCHAR},
+</if>
+ <if test="record.password != null" >
+	 `password` = #{record.password,jdbcType=VARCHAR},
+</if>
+ <if test="record.name != null" >
+	 `name` = #{record.name,jdbcType=VARCHAR},
+</if>
+ <if test="record.celphone != null" >
+	 `celphone` = #{record.celphone,jdbcType=VARCHAR},
+</if>
+ <if test="record.headImg != null" >
+	 `head_img` = #{record.headImg,jdbcType=VARCHAR},
+</if>
+ <if test="record.szType != null" >
+	 `sz_type` = #{record.szType,jdbcType=VARCHAR},
+</if>
+ <if test="record.fixZz != null" >
+	 `fix_zz` = #{record.fixZz,jdbcType=VARCHAR},
+</if>
+ <if test="record.checkStatus != null" >
+	 `check_status` = #{record.checkStatus,jdbcType=INTEGER},
+</if>
+ <if test="record.tevalScore != null" >
+	 `teval_score` = #{record.tevalScore,jdbcType=DOUBLE},
+</if>
+ <if test="record.zcTime != null" >
+	 `zc_time` = #{record.zcTime,jdbcType=VARCHAR},
+</if>
+ <if test="record.isDelete != null" >
+	 `is_delete` = #{record.isDelete,jdbcType=INTEGER}
+</if>
+
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `fix`
+    set 
+    				`login_name` = #{record.loginName,jdbcType=VARCHAR},	`password` = #{record.password,jdbcType=VARCHAR},	`name` = #{record.name,jdbcType=VARCHAR},	`celphone` = #{record.celphone,jdbcType=VARCHAR},	`head_img` = #{record.headImg,jdbcType=VARCHAR},	`sz_type` = #{record.szType,jdbcType=VARCHAR},	`fix_zz` = #{record.fixZz,jdbcType=VARCHAR},	`check_status` = #{record.checkStatus,jdbcType=INTEGER},	`teval_score` = #{record.tevalScore,jdbcType=DOUBLE},	`zc_time` = STR_TO_DATE(#{record.zcTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'),	`is_delete` = #{record.isDelete,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.office.model.Fix">
+    update `fix`
+    <set>
+       <if test="loginName != null" >
+	 `login_name` = #{loginName,jdbcType=VARCHAR},
+</if>
+ <if test="password != null" >
+	 `password` = #{password,jdbcType=VARCHAR},
+</if>
+ <if test="name != null" >
+	 `name` = #{name,jdbcType=VARCHAR},
+</if>
+ <if test="celphone != null" >
+	 `celphone` = #{celphone,jdbcType=VARCHAR},
+</if>
+ <if test="headImg != null" >
+	 `head_img` = #{headImg,jdbcType=VARCHAR},
+</if>
+ <if test="szType != null" >
+	 `sz_type` = #{szType,jdbcType=VARCHAR},
+</if>
+ <if test="fixZz != null" >
+	 `fix_zz` = #{fixZz,jdbcType=VARCHAR},
+</if>
+ <if test="checkStatus != null" >
+	 `check_status` = #{checkStatus,jdbcType=INTEGER},
+</if>
+ <if test="tevalScore != null" >
+	 `teval_score` = #{tevalScore,jdbcType=DOUBLE},
+</if>
+ <if test="zcTime != null" >
+	 `zc_time` = #{zcTime,jdbcType=VARCHAR},
+</if>
+ <if test="isDelete != null" >
+	 `is_delete` = #{isDelete,jdbcType=INTEGER}
+</if>
+
+    </set>
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.office.model.Fix">
+    update `fix`
+    set 
+     			`login_name` = #{loginName,jdbcType=VARCHAR},	`password` = #{password,jdbcType=VARCHAR},	`name` = #{name,jdbcType=VARCHAR},	`celphone` = #{celphone,jdbcType=VARCHAR},	`head_img` = #{headImg,jdbcType=VARCHAR},	`sz_type` = #{szType,jdbcType=VARCHAR},	`fix_zz` = #{fixZz,jdbcType=VARCHAR},	`check_status` = #{checkStatus,jdbcType=INTEGER},	`teval_score` = #{tevalScore,jdbcType=DOUBLE},	`zc_time` = STR_TO_DATE(#{zcTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'),	`is_delete` = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

@@ -1,0 +1,178 @@
+<view style="padding:20px;">
+	<scroll-view scroll-y  enable-back-to-top>
+		<!-- 商品核心信息区 -->
+		<view class="goods-info">
+			<view class="title-wrap">
+				<view class="goods-title">{{detail.bgService.serviceNo!=null?detail.bgService.serviceNo:''}}</view>
+				<view class="goods-opt-wrap">
+				</view>
+			</view>
+			<view class="price-area">
+				<text class="sales">{{detail.bgService.serviceType!=null?detail.bgService.serviceType:''}}</text>
+			</view>
+			<view class="promotion-tags">
+			</view>
+			<view class="goods-base-info">
+				<view class="base-item">
+					<text class="base-value">{{detail.bgService.serviceName!=null?detail.bgService.serviceName:''}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="goods-params">
+			<view class="params-list">
+				<view class="param-item">
+					<text class="param-key">设备型号：</text>
+					<text class="param-value">{{detail.bgService.serviceXh!=null?detail.bgService.serviceXh:''}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="goods-params">
+			<view class="params-list">
+				<view class="param-item">
+					<text class="param-key">采购日期：</text>
+					<text class="param-value">{{detail.bgService.cgDate!=null?detail.bgService.cgDate:''}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="goods-params">
+			<view class="params-list">
+				<view class="param-item">
+					<text class="param-key">办公区域：</text>
+					<text class="param-value">{{detail.bgqyStr!=null?detail.bgqyStr:''}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="order-form">
+			<view class="order-form-title">报修</view>
+			<view class="order-form-content">
+				<view class="spec-area">
+					<view class="spec-title">优先程度</view>
+					<view class="spec-list">
+						<view class="btn-group">
+							<block wx:for="{{byxcdShowList}}" wx:key="id">
+								<button class="type-btn {{item.isSelected ? 'type-btn-active' : ''}}" bindtap="toggleSelect" data-iscomplex="2" data-value="{{item.value}}" data-id="byxcd">
+									{{item.title}}
+								</button>
+							</block>
+							<button class="more-btn" bindtap="toggleShow" wx-if="{{byxcdList.length>7}}" data-id="byxcd">
+								{{byxcdShowAll ? '收起' : '《更多'}}
+							</button>
+						</view>
+					</view>
+				</view>
+				<view class="spec-area">
+					<view class="spec-title">故障描述</view>
+					<view class="spec-list">
+						<textarea  rows="3" value="{{bgzms}}" id="bgzms" class="form-textarea" cursorSpacing="80"  bindinput="inputHandler" />
+					</view>
+				</view>
+				<view class="spec-area">
+					<view class="spec-title">故障图片</view>
+					<view class="spec-list">
+						<view class="upload-box">
+							<!-- 已选文件列表（支持图片/视频/文件/音频） -->
+							<view class="file-list">
+								<block wx:for="{{bgzImgFileList}}" wx:key="index">
+									<!-- 通用文件项：不同类型展示不同样式 -->
+									<view class="file-item">
+										<!-- 1. 图片/视频预览 -->
+										<view class="media-preview" wx:if="{{item.fileType === 'image' || item.fileType === 'video'}}" bindtap="previewMedia" data-index="{{index}}" data-id="bgzImg">
+											<image class="file-img" src="{{item.coverUrl || item.tempUrl}}" mode="aspectFill"></image>
+											<!-- 视频时长 -->
+											<view class="video-duration" wx:if="{{item.fileType === 'video'}}">{{item.duration}}</view>
+											<!-- 视频/音频图标 -->
+											<view class="file-icon {{item.fileType}}" wx:if="{{item.fileType === 'video' || item.fileType === 'audio'}}">
+												<text>{{item.fileType === 'video' ? '🎬' : '🎵'}}</text>
+											</view>
+										</view>
+										<!-- 2. 文件/音频预览（文字+图标） -->
+										<view class="file-preview" wx:if="{{item.fileType === 'file' || item.fileType === 'audio'}}" bindtap="openFile" data-index="{{index}}" data-id="bgzImg">
+											<view class="file-icon {{item.fileType}}">
+												<text>{{item.fileType === 'file' ? '📄' : '🎵'}}</text>
+											</view>
+											<view class="file-info">
+												<view class="file-name">{{item.fileName || '未知文件'}}</view>
+												<view class="file-size">{{item.fileSize}}</view>
+											</view>
+										</view>
+										<!-- 删除按钮 -->
+										<view class="del-btn" bindtap="delFile" data-id="bgzImg" data-index="{{index}}">×</view>
+										<!-- 上传状态提示 -->
+										<view class="upload-status" wx:if="{{item.uploadStatus === 'uploading'}}">上传中...</view>
+										<view class="upload-status success" wx:if="{{item.uploadStatus === 'success'}}">✓</view>
+										<view class="upload-status fail" wx:if="{{item.uploadStatus === 'fail'}}">×</view>
+									</view>
+								</block>
+							</view>
+							<!-- 上传按钮（数量限制） -->
+							<view class="upload-btn" wx:if="{{bgzImgFileList.length < 5}}"
+									data-maxnum="5" data-id="bgzImg" bindtap="chooseUploadType"  data-filetype="1">
+									<view class="upload-icon">+</view>
+									<view class="upload-text">点击上传文件</view>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="spec-area">
+						<view class="spec-title">故障视频</view>
+						<view class="spec-list">
+							<view class="upload-box">
+								<!-- 已选文件列表（支持图片/视频/文件/音频） -->
+								<view class="file-list">
+									<block wx:for="{{bgzVeoFileList}}" wx:key="index">
+										<!-- 通用文件项：不同类型展示不同样式 -->
+										<view class="file-item">
+											<!-- 1. 图片/视频预览 -->
+											<view class="media-preview" wx:if="{{item.fileType === 'image' || item.fileType === 'video'}}" bindtap="previewMedia" data-index="{{index}}" data-id="bgzVeo">
+												<image class="file-img" src="{{item.coverUrl || item.tempUrl}}" mode="aspectFill"></image>
+												<!-- 视频时长 -->
+												<view class="video-duration" wx:if="{{item.fileType === 'video'}}">{{item.duration}}</view>
+												<!-- 视频/音频图标 -->
+												<view class="file-icon {{item.fileType}}" wx:if="{{item.fileType === 'video' || item.fileType === 'audio'}}">
+													<text>{{item.fileType === 'video' ? '🎬' : '🎵'}}</text>
+												</view>
+											</view>
+											<!-- 2. 文件/音频预览（文字+图标） -->
+											<view class="file-preview" wx:if="{{item.fileType === 'file' || item.fileType === 'audio'}}" bindtap="openFile" data-index="{{index}}" data-id="bgzVeo">
+												<view class="file-icon {{item.fileType}}">
+													<text>{{item.fileType === 'file' ? '📄' : '🎵'}}</text>
+												</view>
+												<view class="file-info">
+													<view class="file-name">{{item.fileName || '未知文件'}}</view>
+													<view class="file-size">{{item.fileSize}}</view>
+												</view>
+											</view>
+											<!-- 删除按钮 -->
+											<view class="del-btn" bindtap="delFile" data-id="bgzVeo" data-index="{{index}}">×</view>
+											<!-- 上传状态提示 -->
+											<view class="upload-status" wx:if="{{item.uploadStatus === 'uploading'}}">上传中...</view>
+											<view class="upload-status success" wx:if="{{item.uploadStatus === 'success'}}">✓</view>
+											<view class="upload-status fail" wx:if="{{item.uploadStatus === 'fail'}}">×</view>
+										</view>
+									</block>
+								</view>
+								<!-- 上传按钮（数量限制） -->
+								<view class="upload-btn" wx:if="{{bgzVeoFileList.length < 1}}"
+										data-maxnum="1" data-id="bgzVeo" bindtap="chooseUploadType"  data-filetype="2">
+										<view class="upload-icon">+</view>
+										<view class="upload-text">点击上传文件</view>
+									</view>
+								</view>
+							</view>
+						</view>
+						<view class="spec-area">
+							<view class="spec-title">故障位置</view>
+							<view class="spec-list">
+								<input  id="bgzLocation"  bind:change="inputHandler" value="{{bgzLocation}}" class="form-input"   placeholder="请输入故障位置"   />
+							</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+		<!-- 底部固定操作栏 -->
+		<view class="bottom-bar">
+			<view class="buy-btn"  bindtap="submitBxLog">
+				<text class="buy-text">报修</text>
+			</view>
+		</view>

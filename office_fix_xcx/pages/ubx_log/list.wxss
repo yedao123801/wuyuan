@@ -1,0 +1,769 @@
+/* 全局样式：红色系+主流小程序设计规范（极致统一+质感升级） */
+page {
+  /* 核心红色系（更柔和的品牌红，符合主流小程序审美） */
+  --primary-red: #E63946;    
+  --light-red: #FFF1F2;      
+  --border-red: #F9D3D5;     
+  --dark-red: #D12B38;       
+  --text-red: #E63946;       
+  --shadow-xs: 0 1rpx 3rpx rgba(230, 57, 70, 0.05);
+  --shadow-sm: 0 2rpx 8rpx rgba(230, 57, 70, 0.08);
+  --shadow-md: 0 4rpx 12rpx rgba(230, 57, 70, 0.12);
+  /* 基础色值（统一规范+更细腻的灰度） */
+  --text-main: #1D2129;
+  --text-secondary: #4E5969;
+  --text-tertiary: #86909C;
+  --text-placeholder: #C9CDD4;
+  --bg-white: #FFFFFF;
+  --bg-gray: #F7F8FA;
+  --border-gray: #E5E6EB;
+  background-color: var(--bg-gray);
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 28rpx; 
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/* 根容器：基础布局修正 */
+.page {
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 60rpx;
+  box-sizing: border-box;
+}
+/* ========== 1. 搜索区域（主流小程序搜索框样式） ========== */
+.search-input-area {
+  width: 100%;
+  padding: 24rpx 24rpx 16rpx;
+  box-sizing: border-box;
+  background-color: var(--bg-white);
+  margin-bottom: 16rpx;
+}
+.search_card_container {
+  background: transparent;
+  padding: 0;
+}
+.search_card_box {
+  display: flex;
+  align-items: center;
+  background: var(--bg-white);
+  border: 1rpx solid var(--border-gray);
+  border-radius: 48rpx;
+  box-shadow: var(--shadow-sm);
+  padding: 0 24rpx;
+  height: 88rpx;
+  margin: 0 auto;
+  max-width: 700rpx;
+  transition: all 0.2s ease;
+}
+.search_card_box:focus-within {
+  border-color: var(--primary-red);
+  box-shadow: var(--shadow-md);
+}
+.search_input {
+  flex: 1;
+  height: 100%;
+  font-size: 28rpx;
+  color: var(--text-main);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 12rpx;
+}
+.search_input::placeholder {
+  color: var(--text-placeholder);
+  font-size: 26rpx;
+}
+.search_btn {
+  background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+  border-radius: 36rpx;
+  padding: 14rpx 36rpx;
+  margin-left: 8rpx;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+.search_btn_text {
+  font-size: 26rpx;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+}
+.search_btn:active {
+  transform: scale(0.96);
+  box-shadow: var(--shadow-xs);
+}
+/* ========== 2. 筛选栏（主流小程序筛选样式） ========== */
+.filter_top_tab_wrap {
+  display: flex;
+  background: var(--bg-white);
+  border-radius: 16rpx;
+  margin: 0 24rpx 20rpx;
+  padding: 0 24rpx;
+  box-shadow: var(--shadow-xs);
+  border: 1rpx solid var(--border-gray);
+  max-width: 700rpx;
+  margin-left: auto;
+  margin-right: auto;
+}
+.filter_tab_item {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  position: relative;
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.filter_tab_active {
+  color: var(--primary-red) !important;
+  font-weight: 600 !important;
+}
+.filter_tab_active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 4rpx;
+  background-color: var(--primary-red);
+  border-radius: 2rpx;
+}
+.filter_badge_num {
+  position: absolute;
+  top: 16rpx;
+  right: 20rpx;
+  min-width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  background: var(--primary-red);
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 16rpx;
+  text-align: center;
+  padding: 0 6rpx;
+  box-sizing: border-box;
+}
+/* 筛选弹窗（主流小程序弹窗样式） */
+.filter_modal_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 9999;
+}
+.filter_modal_show {
+  display: block;
+}
+.filter_modal_mask {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4rpx);
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.filter_modal_content_box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bg-white);
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 32rpx 24rpx;
+  max-height: 85vh;
+  box-sizing: border-box;
+  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 -4rpx 16rpx rgba(0,0,0,0.08);
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.filter_inner_tab_wrap {
+  display: flex;
+  margin-bottom: 24rpx;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 8rpx;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.filter_inner_tab_wrap::-webkit-scrollbar {
+  display: none;
+}
+.filter_inner_tab_item {
+  padding: 0 28rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  background: var(--bg-gray);
+  border-radius: 36rpx;
+  margin: 0 8rpx;
+  font-size: 26rpx;
+  white-space: nowrap;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+.filter_inner_tab_active {
+  background: var(--primary-red) !important;
+  color: #fff !important;
+  box-shadow: var(--shadow-sm);
+}
+.filter_tag_list_wrap {
+  width: 100%;
+  padding: 8rpx 0;
+}
+.filter_tag_item {
+  display: inline-block;
+  padding: 14rpx 28rpx;
+  background: var(--bg-gray);
+  border: 1rpx solid var(--border-gray);
+  border-radius: 24rpx;
+  margin: 8rpx 8rpx;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+.filter_tag_active {
+  background: var(--primary-red) !important;
+  color: #fff !important;
+  border-color: var(--primary-red) !important;
+  box-shadow: var(--shadow-xs);
+}
+/* 弹窗按钮（主流样式） */
+.filter_btn_wrap {
+  display: flex;
+  gap: 24rpx;
+  margin-top: 32rpx;
+  width: 100%;
+  padding-top: 24rpx;
+  border-top: 1rpx solid var(--border-gray);
+}
+.filter_reset_btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  border: 1rpx solid var(--border-gray);
+  background: var(--bg-white);
+  transition: all 0.2s ease;
+}
+.filter_reset_btn:active {
+  background: var(--bg-gray);
+}
+.filter_confirm_btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  background: linear-gradient(135deg, var(--primary-red), var(--dark-red)) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+.filter_confirm_btn:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-xs);
+}
+/* ========== 3. 全局按钮区（主流样式） ========== */
+.global-btn-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16rpx;
+  padding: 16rpx 24rpx;
+  background: var(--bg-white);
+  border: 1rpx solid var(--border-gray);
+  flex-wrap: wrap;
+  margin: 0 auto 24rpx;
+  border-radius: 16rpx;
+  box-shadow: var(--shadow-xs);
+  max-width: 700rpx;
+}
+.add-btn-div {
+  flex-shrink: 0;
+}
+/* 按钮样式统一 */
+.add-btn, .add-btn--clear {
+  min-width: 120rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  padding: 0 24rpx;
+  border-radius: 36rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  background: var(--bg-white) !important;
+  border: 1rpx solid var(--primary-red) !important;
+  color: var(--primary-red) !important;
+  transition: all 0.2s ease;
+}
+.add-btn:active {
+  background: var(--light-red) !important;
+  transform: scale(0.96);
+}
+/* ========== 4. 列表区域（核心美化 - 改为一行一个数据） ========== */
+.page__bd {
+  padding: 0 24rpx;
+  background: transparent;
+  min-height: calc(100vh - 400rpx);
+}
+/* 列表网格（核心修改：改为一行一个） */
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* 关键修改：2改为1，一行只显示一个 */
+  gap: 16rpx; /* 调整纵向间距，更适合单行布局 */
+  width: 100%;
+  max-width: 700rpx;
+  margin: 0 auto;
+  grid-auto-rows: minmax(min-content, max-content);
+}
+/* 列表卡片（适配单行布局优化） */
+.table-list {
+  background: var(--bg-white);
+  border-radius: 20rpx;
+  border: 1rpx solid var(--border-gray);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  box-sizing: border-box;
+  padding-bottom: 12rpx;
+}
+.table-list:active {
+  transform: translateY(-2rpx);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-red);
+}
+/* 卡片内容 */
+.table-list-div1 {
+  padding: 20rpx 16rpx 12rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.table-list-div-item {
+  display: flex; /* 关键修改：改为横向布局，图片+文本并排 */
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+  flex: 1;
+}
+/* 图片容器（适配单行布局优化） */
+.table-list-div-item-img {
+  flex-shrink: 0;
+  width: 120rpx; /* 固定宽度，更适合单行布局 */
+  height: 120rpx; /* 正方形图片，视觉更协调 */
+  border-radius: 16rpx;
+  box-shadow: var(--shadow-xs);
+  position: relative;
+}
+.table-list-div-item-img2 {
+  width: 100%;
+}
+.table-list-div-item-img-url {
+  width: 50% !important;
+  object-fit: cover !important;
+}
+/* 文本内容容器（适配横向布局） */
+.table-list-div-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* 标题+星级行 */
+.table-list-div2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+  padding-bottom: 12rpx;
+  border-bottom: 1rpx solid var(--border-gray);
+}
+.table-list-div-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  max-width: 80%; /* 放宽宽度限制，适配单行布局 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.5rpx;
+}
+.table-list-div-span {
+  font-size: 22rpx;
+  padding: 6rpx 14rpx;
+  border-radius: 12rpx;
+  background: var(--light-red);
+  color: var(--primary-red);
+  border: 1rpx solid var(--border-red);
+  font-weight: 500;
+}
+/* 文本内容 */
+.table-list-div-content-span {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-bottom: 6rpx;
+  line-height: 1.4;
+}
+.table-list-div-content-span::before {
+  content: "•";
+  color: var(--primary-red);
+  margin-right: 6rpx;
+  font-size: 20rpx;
+}
+.table-list-div-content-span2 {
+  font-size: 22rpx;
+  color: var(--text-tertiary);
+  display: block;
+  line-height: 1.4;
+}
+.table-list-div-content-span2::before {
+  content: "•";
+  color: var(--text-placeholder);
+  margin-right: 6rpx;
+  font-size: 20rpx;
+}
+/* 操作按钮区（适配单行布局优化） */
+.add-update-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* 按钮靠右显示，更符合单行布局习惯 */
+  gap: 12rpx;
+  padding: 16rpx 12rpx 8rpx;
+  border-top: 1rpx solid var(--border-gray);
+  margin-top: auto;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  box-sizing: border-box;
+}
+.list-btn-div {
+  flex-shrink: 0; /* 取消宽度限制，按钮自适应 */
+  min-width: 100rpx; /* 调整最小宽度，适配单行布局 */
+}
+/* 操作按钮 */
+.list-abtn {
+  width: 100%;
+  height: 68rpx;
+  line-height: 68rpx;
+  padding: 0 !important;
+  border-radius: 34rpx;
+  font-size: 24rpx;
+  background: var(--bg-white) !important;
+  border: 1rpx solid var(--border-gray) !important;
+  color: var(--text-secondary) !important;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  letter-spacing: 0.5rpx;
+}
+.list-abtn:first-child {
+  border-color: var(--border-red) !important;
+  color: var(--primary-red) !important;
+}
+.list-abtn:last-child {
+  border-color: #F0B9B7 !important;
+  color: #F56A62 !important;
+}
+.list-abtn:active {
+  background: var(--bg-gray) !important;
+  transform: scale(0.96);
+  box-shadow: none;
+}
+/* ========== 5. 无数据提示（主流空状态样式） ========== */
+.no-data {
+  text-align: center;
+  padding: 100rpx 0;
+  font-size: 28rpx;
+  color: var(--text-tertiary);
+  background: var(--bg-white);
+  border-radius: 20rpx;
+  margin: 40rpx auto;
+  border: 1rpx solid var(--border-gray);
+  box-shadow: var(--shadow-xs);
+  max-width: 700rpx;
+  line-height: 1.6;
+}
+.no-data::before {
+  content: "💬";
+  display: block;
+  font-size: 64rpx;
+  margin-bottom: 24rpx;
+  opacity: 0.5;
+}
+.no-data::after {
+  content: "暂无评价数据，快去添加吧～";
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-placeholder);
+  margin-top: 8rpx;
+}
+/* ========== 6. 响应式适配（全尺寸兼容） ========== */
+@media (max-width: 320px) {
+  .search_card_box {
+    height: 80rpx;
+    padding: 0 20rpx;
+  }
+  .filter_top_tab_wrap {
+    margin: 0 16rpx 16rpx;
+    padding: 0 16rpx;
+  }
+  .filter_tab_item {
+    font-size: 26rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+  }
+  .global-btn-area {
+    justify-content: center;
+    padding: 12rpx 16rpx;
+    margin: 0 auto 16rpx;
+  }
+  .add-btn {
+    min-width: 100rpx;
+    height: 68rpx;
+    line-height: 68rpx;
+    font-size: 26rpx;
+  }
+  .data-grid {
+    gap: 12rpx;
+  }
+  .table-list-div-item-img {
+    width: 100rpx;
+    height: 100rpx;
+  }
+  .add-update-area {
+    padding: 12rpx 8rpx 8rpx;
+    gap: 8rpx;
+  }
+  .list-btn-div {
+    min-width: 90rpx;
+  }
+  .list-abtn {
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 22rpx;
+    border-radius: 30rpx;
+  }
+  .no-data {
+    padding: 80rpx 0;
+    font-size: 26rpx;
+  }
+}
+/* ========== 7. 筛选功能样式兼容 ========== */
+.filter_page_container {
+  width: 100%;
+  box-sizing: border-box;
+}
+/* 图片容器修复：清除不必要的限制，保证布局正确 */
+.table-list-div-item-img {
+  flex-shrink: 0;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  position: relative;
+  /* 新增：强制显示，避免被隐藏 */
+  display: block !important;
+}
+/* 多图容器：保证内部flex换行正常 */
+.table-list-div-item-img2 {
+  width: 100%;
+}
+/* 图片本身：修复宽高计算，添加object-fit兜底 */
+.table-list-div-item-img-url {
+  width: 100% !important;
+  /* 双保险：mode属性 + css object-fit */
+  object-fit: cover !important;
+  display: block !important;
+  /* 新增：消除间隙 */
+  vertical-align: middle;
+}
+/* 适配小屏幕的图片尺寸 */
+@media (max-width: 320px) {
+  .table-list-div-item-img {
+    width: 100rpx;
+  }
+}
+
+/* 筛选功能根容器：隔离全局样式 */
+.filter_page_container {
+  width: 100%;
+  box-sizing: border-box;
+}
+/* 顶部筛选Tab外层：加长类名 */
+.filter_top_tab_wrap {
+  display: flex;
+  background: #fff;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  padding: 0 10rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+/* 顶部Tab项：加长类名 */
+.filter_tab_item {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  position: relative;
+  font-size: 28rpx;
+  color: #333;
+  box-sizing: border-box;
+}
+/* Tab选中态：加长类名+!important，避免被覆盖 */
+.filter_tab_active {
+  color: #E53935 !important;
+  font-weight: 600 !important;
+}
+/* 角标数字：加长类名 */
+.filter_badge_num {
+  position: absolute;
+  top: 10rpx;
+  right: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  background: #E53935;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 50%;
+  text-align: center;
+}
+/* 筛选弹窗外层：加长类名+提高层级 */
+.filter_modal_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 9999; /* 避免被其他组件遮挡 */
+}
+/* 弹窗显示状态：加长类名 */
+.filter_modal_show {
+  display: block;
+}
+/* 弹窗遮罩层：加长类名 */
+.filter_modal_mask {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+/* 弹窗内容区：加长类名 */
+.filter_modal_content_box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+  padding: 20rpx;
+  max-height: 90vh;
+  box-sizing: border-box;
+}
+/* 弹窗内Tab外层：加长类名 */
+.filter_inner_tab_wrap {
+  display: flex;
+  margin-bottom: 20rpx;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+/* 弹窗内Tab项：加长类名 */
+.filter_inner_tab_item {
+  padding: 0 20rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  background: #FFF5F5;
+  border-radius: 10rpx;
+  margin: 0 5rpx;
+  font-size: 26rpx;
+  white-space: nowrap;
+  flex-shrink: 0; /* 防止压缩 */
+}
+/* 弹窗内Tab选中态：加长类名+!important */
+.filter_inner_tab_active {
+  background: #E53935 !important;
+  color: #fff !important;
+}
+/* 筛选标签列表外层：新增，优化布局 */
+.filter_tag_list_wrap {
+  width: 100%;
+  box-sizing: border-box;
+}
+/* 筛选标签项：加长类名+强化样式 */
+.filter_tag_item {
+  display: inline-block;
+  padding: 15rpx 30rpx;
+  background: #FFF5F5;
+  border: 1rpx solid #FCE4E4;
+  border-radius: 20rpx;
+  margin: 10rpx;
+  font-size: 26rpx;
+  color: #333;
+  /* 确保点击和样式优先级 */
+  position: relative;
+  z-index: 1;
+  touch-action: manipulation;
+  user-select: none;
+  pointer-events: auto;
+}
+/* 标签选中态：加长类名+!important，确保不冲突 */
+.filter_tag_active {
+  background: #E53935 !important;
+  color: #fff !important;
+  border-color: #E53935 !important;
+}
+/* 按钮区外层：加长类名 */
+.filter_btn_wrap {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 20rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* 重置按钮：加长类名 */
+.filter_reset_btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  color: #E53935;
+  border: 1rpx solid #FCE4E4;
+  background: #fff;
+}
+/* 确认按钮：加长类名+!important */
+.filter_confirm_btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  background: #E53935 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+
+
+
+
+

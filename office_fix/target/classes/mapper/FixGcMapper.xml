@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.office.dao.FixGcMapper">
+  <resultMap id="BaseResultMap" type="com.office.model.FixGc">
+    <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="fix_bz" property="fixBz" jdbcType="VARCHAR" />
+  <result column="ghpj" property="ghpj" jdbcType="VARCHAR" />
+  <result column="xhgs" property="xhgs" jdbcType="DOUBLE" />
+  <result column="fix" property="fix" jdbcType="BIGINT" />
+  <result column="bxid" property="bxid" jdbcType="BIGINT" />
+  <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+     id,`fix_bz`,`ghpj`,`xhgs`,`fix`,`bxid`,`create_time`
+  </sql>
+  <select id="selectByExample" parameterType="com.office.model.FixGcExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `fix_gc`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+     <if test="startRow >= 0 and pageRows > 0">
+  limit ${startRow},${pageRows}
+  </if>
+
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from `fix_gc`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+   delete from `fix_gc`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.office.model.FixGcExample">
+    delete from `fix_gc`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.office.model.FixGc">
+      <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  SELECT LAST_INSERT_ID()
+</selectKey>
+
+      insert into `fix_gc` (`fix_bz`,`ghpj`,`xhgs`,`fix`,`bxid`,`create_time`)
+      values (	#{fixBz,jdbcType=VARCHAR},	#{ghpj,jdbcType=VARCHAR},	#{xhgs,jdbcType=DOUBLE},	#{fix,jdbcType=BIGINT},	#{bxid,jdbcType=BIGINT},	STR_TO_DATE(#{createTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'))
+  </insert>
+  <insert id="insertSelective" parameterType="com.office.model.FixGc">
+   <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  SELECT LAST_INSERT_ID()
+</selectKey>
+
+    insert into `fix_gc`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null" >
+	  `id`,
+ </if>
+<if test="fixBz != null" >
+	  `fix_bz`,
+ </if>
+<if test="ghpj != null" >
+	  `ghpj`,
+ </if>
+<if test="xhgs != null" >
+	  `xhgs`,
+ </if>
+<if test="fix != null" >
+	  `fix`,
+ </if>
+<if test="bxid != null" >
+	  `bxid`,
+ </if>
+<if test="createTime != null" >
+	  `create_time`
+ </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+         <if test="id != null" >
+	 #{id,jdbcType=BIGINT},
+	 </if>
+  <if test="fixBz != null" >
+	 #{fixBz,jdbcType=VARCHAR},
+	 </if>
+  <if test="ghpj != null" >
+	 #{ghpj,jdbcType=VARCHAR},
+	 </if>
+  <if test="xhgs != null" >
+	 #{xhgs,jdbcType=DOUBLE},
+	 </if>
+  <if test="fix != null" >
+	 #{fix,jdbcType=BIGINT},
+	 </if>
+  <if test="bxid != null" >
+	 #{bxid,jdbcType=BIGINT},
+	 </if>
+  <if test="createTime != null" >
+	 STR_TO_DATE(#{createTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f'),
+	 </if>
+
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.office.model.FixGcExample" resultType="java.lang.Long">
+    select count(*) from `fix_gc`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `fix_gc`
+    <set>
+       <if test="record.fixBz != null" >
+	 `fix_bz` = #{record.fixBz,jdbcType=VARCHAR},
+</if>
+ <if test="record.ghpj != null" >
+	 `ghpj` = #{record.ghpj,jdbcType=VARCHAR},
+</if>
+ <if test="record.xhgs != null" >
+	 `xhgs` = #{record.xhgs,jdbcType=DOUBLE},
+</if>
+ <if test="record.fix != null" >
+	 `fix` = #{record.fix,jdbcType=BIGINT},
+</if>
+ <if test="record.bxid != null" >
+	 `bxid` = #{record.bxid,jdbcType=BIGINT},
+</if>
+ <if test="record.createTime != null" >
+	 `create_time` = #{record.createTime,jdbcType=VARCHAR}
+</if>
+
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `fix_gc`
+    set 
+    				`fix_bz` = #{record.fixBz,jdbcType=VARCHAR},	`ghpj` = #{record.ghpj,jdbcType=VARCHAR},	`xhgs` = #{record.xhgs,jdbcType=DOUBLE},	`fix` = #{record.fix,jdbcType=BIGINT},	`bxid` = #{record.bxid,jdbcType=BIGINT},	`create_time` = STR_TO_DATE(#{record.createTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f')
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.office.model.FixGc">
+    update `fix_gc`
+    <set>
+       <if test="fixBz != null" >
+	 `fix_bz` = #{fixBz,jdbcType=VARCHAR},
+</if>
+ <if test="ghpj != null" >
+	 `ghpj` = #{ghpj,jdbcType=VARCHAR},
+</if>
+ <if test="xhgs != null" >
+	 `xhgs` = #{xhgs,jdbcType=DOUBLE},
+</if>
+ <if test="fix != null" >
+	 `fix` = #{fix,jdbcType=BIGINT},
+</if>
+ <if test="bxid != null" >
+	 `bxid` = #{bxid,jdbcType=BIGINT},
+</if>
+ <if test="createTime != null" >
+	 `create_time` = #{createTime,jdbcType=VARCHAR}
+</if>
+
+    </set>
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.office.model.FixGc">
+    update `fix_gc`
+    set 
+     			`fix_bz` = #{fixBz,jdbcType=VARCHAR},	`ghpj` = #{ghpj,jdbcType=VARCHAR},	`xhgs` = #{xhgs,jdbcType=DOUBLE},	`fix` = #{fix,jdbcType=BIGINT},	`bxid` = #{bxid,jdbcType=BIGINT},	`create_time` = STR_TO_DATE(#{createTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s:%f')
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

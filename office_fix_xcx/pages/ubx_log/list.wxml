@@ -1,0 +1,118 @@
+<view class="page">
+	<view class="search-input-area">
+		<view class="search_card_container">
+			<view class='search_card_box'>
+				<!-- 搜索图标 -->
+				<input
+				type='text'
+				placeholder='请输入关键词'
+				id="searchKeyWord"
+				bind:change="inputHandler"
+				class="search_input"
+			/>
+			<view class="search_btn" bindtap="refreshList">
+				<text class="search_btn_text">搜索</text>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="filter_top_tab_wrap" wx:if="{{filterDimensionList.length>0}}">
+	<view bindtap="resetAllFilter" class="filter_tab_item {{activeTab === 'all' ? 'filter_tab_active' : ''}}">
+		默认
+	</view>
+	<view bindtap="showFilterModal" class="filter_tab_item {{activeTab === 'filter' ? 'filter_tab_active' : ''}}">
+		筛选
+		<view class="filter_badge_num" wx:if="{{totalSelectedCount > 0}}">{{totalSelectedCount}}</view>
+	</view>
+</view>
+<view class="filter_modal_wrap {{filterModalVisible ? 'filter_modal_show' : ''}}">
+	<view class="filter_modal_mask" bindtap="hideFilterModal"></view>
+	<view class="filter_modal_content_box" catchtap="">
+		<!-- 弹窗内Tab：类名加长+前缀 -->
+		<view class="filter_inner_tab_wrap">
+			<view
+				bindtap="switchFilterTab"
+				data-attr-name="{{item.attrName}}"
+				class="filter_inner_tab_item {{activeFilterTab === item.attrName ? 'filter_inner_tab_active' : ''}}"
+				wx:for="{{filterDimensionList}}"
+				wx:key="attrName"
+				>
+				{{item.zhName}}
+			</view>
+		</view>
+		<!-- 筛选标签：类名加长+前缀，保留checked判断逻辑 -->
+		<view wx:if="{{currentFilterDimension}}" class="filter_tag_list_wrap">
+			<view
+				bindtap="selectFilterItem"
+				data-attr-name="{{currentFilterDimension.attrName}}"
+				data-item-id="{{item.id}}"
+				class="filter_tag_item {{item.checked ? 'filter_tag_active' : ''}}"
+				wx:for="{{currentFilterDimension.list}}"
+				wx:key="id"
+				>
+				{{item.name}}
+			</view>
+		</view>
+		<!-- 底部按钮区：类名加长+前缀 -->
+		<view class="filter_btn_wrap">
+			<button bindtap="resetCurrentFilter" class="filter_reset_btn">重置当前</button>
+			<button bindtap="confirmFilter" class="filter_confirm_btn">确认筛选</button>
+		</view>
+	</view>
+</view>
+<view class="page__bd" >
+	<view class="data-grid">
+		<block wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+			<view class="table-list">
+				<view class="table-list-div1">
+					<navigator url="/pages/ubx_log/detail?id={{item.bxLog.id}}">
+						<view class="table-list-div2">
+							<view class="table-list-div-title">{{item.bxLog.bxNo!=null?item.bxLog.bxNo:''}}</view>
+							<view class="table-list-div-span">{{item.yxcdStr!=null?item.yxcdStr:''}}</view>
+						</view>
+						<view class="table-list-div-item">
+							<view class="table-list-div-content">
+								<view  class="table-list-div-subcontent">
+									<view class="table-list-div-content-span"> 办公设备： {{item.bgService==null?'':item.bgService.serviceNo}}</view>
+									<view class="table-list-div-content-span"> 设备类型： {{item.bxLog.serviceType!=null?item.bxLog.serviceType:''}}</view>
+									<view class="table-list-div-content-span2">
+										报修状态：{{item.bxStatusStr!=null?item.bxStatusStr:''}}
+									</view>
+									<view class="table-list-div-content-span2">
+										故障位置：{{item.bxLog.gzLocation!=null?item.bxLog.gzLocation:''}}
+									</view>
+									<view class="table-list-div-content-span2">
+										管理员备注：{{item.bxLog.adminRemark!=null?item.bxLog.adminRemark:''}}
+									</view>
+								</view>
+							</view>
+						</view>
+					</navigator>
+					<view class="add-update-area">
+						<block wx:if="{{item.bxLog.bxStatus==5}}">
+							<view class="list-btn-div">
+								<button class="list-abtn" data-id="{{item.bxLog.id}}" bindtap="go_eval_log">评价</button>
+							</view>
+						</block>
+						<block wx:if="{{item.bxLog.bxStatus==1}}">
+							<view class="list-btn-div">
+								<button class="list-abtn" data-id="{{item.bxLog.id}}" bindtap="del1">删除</button>
+							</view>
+						</block>
+						<block wx:if="{{item.bxLog.bxStatus==4}}">
+							<view class="list-btn-div">
+								<button class="list-abtn" data-id="{{item.bxLog.id}}" bindtap="ys">验收</button>
+							</view>
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
+	<block wx:if="{{list.length==0}}">
+		<view class="no-data">
+			暂无数据
+		</view>
+	</block>
+</view>
+</view>

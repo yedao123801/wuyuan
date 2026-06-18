@@ -1,0 +1,136 @@
+<view class="page">
+	<view class="page-title-div">
+		<view class="page-detail-title-div">
+			<view class="page-detail-title">
+				{{detail.bxLog.bxNo!=null?detail.bxLog.bxNo:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				办公设备
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.bgServiceStr!=null?detail.bgServiceStr:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				设备类型
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.bxLog.serviceType!=null?detail.bxLog.serviceType:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				办公区域
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.bgqyStr!=null?detail.bgqyStr:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				故障描述
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.bxLog.gzms!=null?detail.bxLog.gzms:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				故障位置
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.bxLog.gzLocation!=null?detail.bxLog.gzLocation:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				管理员备注
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.bxLog.adminRemark!=null?detail.bxLog.adminRemark:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				验收说明
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.bxLog.ysNote!=null?detail.bxLog.ysNote:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				维修员备注
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.bxLog.fixRemark!=null?detail.bxLog.fixRemark:''}}
+			</view>
+		</view>
+		<view class="page-detail-intro">
+			<view class="page-detail-intro-title">
+				创建时间
+			</view>
+			<view class="page-detail-intro-word">
+				{{detail.bxLog.createTime!=null?detail.bxLog.createTime:''}}
+			</view>
+		</view>
+		<view class="page-detail-author-div">
+			<view class="page-detail-author-title">
+				维修员
+			</view>
+			<view class="page-detail-author-content">
+				<view class="page-detail-author-content2">
+					<view class="page-detail-author-headimg">
+						<image class="page-detail-author-img" src="{{detail.fixImg}}"></image>
+					</view>
+					<view class="page-detail-author-name">{{detail.fixStr!=null?detail.fixStr:''}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="page-detail-author-div">
+			<view class="page-detail-author-title">
+				用户ID
+			</view>
+			<view class="page-detail-author-content">
+				<view class="page-detail-author-content2">
+					<view class="page-detail-author-headimg">
+						<image class="page-detail-author-img" src="{{detail.userIdImg}}"></image>
+					</view>
+					<view class="page-detail-author-name">{{detail.userIdStr!=null?detail.userIdStr:''}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="page-detail-imgs">
+			<view class="page-detail-imgs-title">
+				故障图片
+			</view>
+			<view class="page-detail-imgs-content">
+				<view wx:for="{{detail.gzImgList}}" wx:for-index="index" wx:for-item="item3" wx:key="key">
+					<view class="page-detail-imgs-div3">
+						<image src="{{item3}}" class="page-detail-imgs-aimg"/>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="page-detail-video">
+			<view  class="page-detail-video-title">
+				故障视频
+			</view>
+			<view  class="page-detail-video-content">
+				<view wx:for="{{detail.gzVeoList}}" wx:for-index="index" wx:for-item="item3" wx:key="key">
+					<view  class="page-detail-video3">
+						<video src='{{item3}}'  class="page-detail-video-url"  controls></video>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="btn-area">
+			<view wx:if="{{detail.bxLog.bxStatus==4}}">
+				<button class="detail-abtn" data-btntype="1" data-id="{{detail.bxLog.id}}"  bindtap="btnClick">验收</button>
+			</view>
+		</view>
+	</view>
+</view>
